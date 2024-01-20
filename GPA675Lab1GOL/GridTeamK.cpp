@@ -25,7 +25,6 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	}
 }
 
-
 GridTeamK::~GridTeamK()
 {
 	for (size_t i{}; i < mHeight; i++) {
@@ -56,28 +55,51 @@ void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 	mWidth = width;
 	mHeight = height;
 	mSize = width * height;
-	//resize?
+	mGrid = new CellType * [height];			//initialise mGrid avec la nouvelle taille
+
+	for (size_t i{}; i < height; i++) {
+
+		mGrid[i] = new CellType[width];
+
+		for (size_t j{}; j < width; j++) {
+
+			mGrid[i][j] = initValue;
+		}
+	}
 }
 
 CellType GridTeamK::value(int column, int row) const
 {
-	return CellType();
+	return mGrid[row][column];
 }
 
 void GridTeamK::setValue(int column, int row, CellType value)
 {
+	mGrid[row][column] = value;
+}
+
+optional<CellType> GridTeamK::at(int column, int row) const
+{
+	if (row >= 0 && row < mHeight && column >= 0 && column < mWidth) {
+		return mGrid[row][column];
+	}
+	return nullopt;
 }
 
 void GridTeamK::setAt(int column, int row, CellType value)
 {
+	if (row >= 0 && row < mHeight && column >= 0 && column < mWidth) {
+		mGrid[row][column] = value;
+	}
 }
 
 DataType const& GridTeamK::data() const
 {
-	// TODO: insert return statement here
+	return mGrid;
 }
 
 DataType& GridTeamK::data()
 {
-	// TODO: insert return statement here
+	return mGrid;
 }
+

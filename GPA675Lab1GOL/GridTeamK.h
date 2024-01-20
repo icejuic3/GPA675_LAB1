@@ -1,14 +1,17 @@
 #pragma once
 #include "GOLTeamK.h"
 
+// Définition des types														//
+using CellType = GOLTeamK::State;											// Correspond au type fondamental de chaque cellule de la grille. 
+using DataType = CellType**;												// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
+using namespace std;
+
+
 class GridTeamK																	// Classe facilitant la gestion d'un tableau dynamique 2d.
 {																				// 
 public:																			// 
-	// Définition des types														//
-	using CellType = GOLTeamK::State;											// Correspond au type fondamental de chaque cellule de la grille. 
-	using DataType = CellType**;												// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
 	
-	// Définition des cosntructeurs / destructeur								//
+	// Définition des constructeurs / destructeur								//
 	GridTeamK();																// 
 	GridTeamK(size_t width, size_t height, CellType initValue = CellType{});	// 
 	GridTeamK(GridTeamK const&) = delete;										// 
@@ -28,7 +31,7 @@ public:																			//
 	CellType value(int column, int row) const;									// Accesseur retournant la valeur d'une cellule à une certaine coordonnée. Pour une raison de performance, cette fonction NE VALIDE PAS ses entrées. Autrement dit, c'est la responsabilité du programmeur utilisateur de faire ses validations, au risque de 'crasher' le programme.
 	void setValue(int column, int row, CellType value);							// Mutateur modifiant la valeur d'une cellule à une certaine coordonnée. Pour une raison de performance, cette fonction NE VALIDE PAS ses entrées. Autrement dit, c'est la responsabilité du programmeur utilisateur de faire ses validations, au risque de 'crasher' le programme.
 	// 
-	std::optional<CellType> at(int column, int row) const;						// Accesseur retournant la valeur d'une cellule à une certaine coordonnée. Cette fonction VALIDE ses entrées et retourne un optional nul si la coordonnée est invalide. 
+	optional<CellType> at(int column, int row) const;							// Accesseur retournant la valeur d'une cellule à une certaine coordonnée. Cette fonction VALIDE ses entrées et retourne un optional nul si la coordonnée est invalide. 
 	void setAt(int column, int row, CellType value);							// Mutateur modifiant la valeur d'une cellule à une certaine coordonnée. Cette fonction VALIDE ses entrées et ne fait rien si la coordonnée est invalide. 
 	
 	// Accesseurs du "buffer" de la grille.										//
@@ -40,7 +43,4 @@ private:																		//
 	size_t mHeight;
 	size_t mSize;
 	DataType mGrid;																//pointeur de pointeur
-
-
-
 };
