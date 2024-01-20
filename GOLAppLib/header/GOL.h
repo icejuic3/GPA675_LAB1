@@ -642,7 +642,7 @@ public:
 	//! \param buffer Le tableau de pixels de l'image.
 	//! \param buffer_size La taille du tableau de pixels.
 	virtual void updateImage(uint32_t * buffer, size_t buffer_size) const = 0;
-
+	;l
 };
 
 

@@ -3,25 +3,35 @@
 GridTeamK::GridTeamK() 
 	:mWidth{0}
 	,mHeight{0}
-	, mSize{ mWidth* mHeight }
-	, mGrid{ new CellType[mSize] }
+	,mSize{ mWidth* mHeight }
+	,mGrid{ new CellType* [mSize] }
 {
 }
 
 GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	:mWidth{ width }
-	, mHeight{ height }
-	, mSize{ width * height }
-	, mGrid{ new CellType[mSize]}
+	,mHeight{ height }
+	,mSize{ width * height }
+	,mGrid{ new CellType * [height] }
 {
-	for (CellType * i; i < mSize; ++i) {
-		*i = initValue;
+	for (size_t i{}; i < height; i++) {
+
+		mGrid[i] = new CellType [width];
+
+		for (size_t j{}; j < width; j++) {
+
+			mGrid[i][j] = initValue;
+		}
 	}
 }
 
 
 GridTeamK::~GridTeamK()
 {
+	for (size_t i{}; i < mHeight; i++) {
+
+		delete[] mGrid[i];
+	}
 	delete[] mGrid;
 	mGrid = nullptr;
 }

@@ -1,21 +1,21 @@
 #pragma once
 #include "GOLTeamK.h"
 
-class GridTeamK																		// Classe facilitant la gestion d'un tableau dynamique 2d.
+class GridTeamK																	// Classe facilitant la gestion d'un tableau dynamique 2d.
 {																				// 
 public:																			// 
 	// Définition des types														//
-	using CellType = GOLTeamK::State;												// Correspond au type fondamental de chaque cellule de la grille. 
-	using DataType = ...;														// Correspond à la grille, au conteneur de cellules. À vous de déterminer la structure de données à utiliser.
+	using CellType = GOLTeamK::State;											// Correspond au type fondamental de chaque cellule de la grille. 
+	using DataType = CellType**;												// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
 	
 	// Définition des cosntructeurs / destructeur								//
-	GridTeamK();																		// 
-	GridTeamK(size_t width, size_t height, CellType initValue = CellType{});			// 
-	GridTeamK(GridTeamK const&) = delete;													// 
-	GridTeamK(GridTeamK&&) = delete;														// 
-	GridTeamK& operator=(GridTeamK const&) = delete;										// 
-	GridTeamK& operator=(GridTeamK&&) = delete;											// 
-	~GridTeamK();																	// 
+	GridTeamK();																// 
+	GridTeamK(size_t width, size_t height, CellType initValue = CellType{});	// 
+	GridTeamK(GridTeamK const&) = delete;										// 
+	GridTeamK(GridTeamK&&) = delete;											// 
+	GridTeamK& operator=(GridTeamK const&) = delete;							// 
+	GridTeamK& operator=(GridTeamK&&) = delete;									// 
+	~GridTeamK();														    	// 
 	
 	// Accesseurs et mutateurs de la grille										// 
 	size_t width() const;														// Accesseur retournant la largeur de la grille.
@@ -36,8 +36,11 @@ public:																			//
 	DataType& data();															// Accesseur en lecture/écriture sur le "buffer" de la grille.
 	
 private:																		// 
-	size_t mWidth;															// Il y a des attributs essentiels au fonctionnement de cette classe.
+	size_t mWidth;											    				// Il y a des attributs essentiels au fonctionnement de cette classe.
 	size_t mHeight;
 	size_t mSize;
-	CellType * mGrid;
+	DataType mGrid;																//pointeur de pointeur
+
+
+
 };
