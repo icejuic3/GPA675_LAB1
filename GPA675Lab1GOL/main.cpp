@@ -2,6 +2,7 @@
 #include <QtWidgets/QApplication>
 
 #include "GOLApp.h"
+#include "GOLTeamK.h"
 
 
 
@@ -20,8 +21,9 @@ int main(int argc, char* argv[])
     // Par exemple :
 	// 
 	// window.addEngine(new MonImplementationGOL);
-    // 
+    
 
-    window.show();
-    return application.exec();
+    //window.addEngine(new GOLTeamK);
+    //window.show();
+    //return application.exec();
 }

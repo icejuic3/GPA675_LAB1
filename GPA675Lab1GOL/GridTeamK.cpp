@@ -14,11 +14,11 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	,mSize{ width * height }
 	,mGrid{ new CellType * [height] }
 {
-	for (size_t i{}; i < height; i++) {
+	for (size_t i{}; i < width; i++) {
 
 		mGrid[i] = new CellType [width];
 
-		for (size_t j{}; j < width; j++) {
+		for (size_t j{}; j < height; j++) {
 
 			mGrid[i][j] = initValue;
 		}

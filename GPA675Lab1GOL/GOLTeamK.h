@@ -1,8 +1,11 @@
 #pragma once
 #include "GOL.h"
+#include "GridTeamK.h"
+#include <regex>
 
 class GOLTeamK: public GOL
 {
+public:
 	//! \brief Constructeur par défaut.
 	GOLTeamK() = default;
 	// 
@@ -14,11 +17,11 @@ class GOLTeamK: public GOL
 	// 
 	// Les 4 autres fonctions spéciales sont laissées à votre discrétion.
 	// Toutefois, un simple -delete- est suffisant pour ce premier laboratoire.
-	// _class_(_class_ const &) = delete;
-	// _class_(_class_ &&) = delete;
-	// _class_& operator=(_class_ const &) = delete;
-	// _class_& operator=(_class_ &&) = delete;
-	
+	GOLTeamK(GOLTeamK const &) = delete;
+	GOLTeamK(GOLTeamK &&) = delete;
+	GOLTeamK& operator=(GOLTeamK const &) = delete;
+	GOLTeamK& operator=(GOLTeamK &&) = delete;
+
 	// Inherited via GOL
 	size_t width() const override;
 	size_t height() const override;
@@ -41,5 +44,16 @@ class GOLTeamK: public GOL
 	void setSolidColor(State state, Color const& color) override;
 	void processOneStep() override;
 	void updateImage(uint32_t* buffer, size_t buffer_size) const override;
+
+private:
+	State mGrid;
+	std::string mRule;
+	BorderManagement mBorderManagement;
+	Color mAliveColor;
+	Color mDeadColor;
+	Statistics mStats;
+	ImplementationInformation mInfo;
+	IterationType mIteration;
+
 };
 
