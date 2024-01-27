@@ -1,5 +1,20 @@
 #include "GOLTeamK.h"
 
+GOLTeamK::GOLTeamK()
+{
+}
+
+GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
+{
+
+    mInfo.title = "Game of life";
+    mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, };
+
+
+
+
+}
+
 size_t GOLTeamK::width() const
 {
     return grid.getWidth();
@@ -17,8 +32,8 @@ size_t GOLTeamK::size() const
 
 GOL::State GOLTeamK::state(int x, int y) const
 {
-    return grid.value(x, y);
-    //return grid.at(x, y); //optionnel
+    return grid.value(x, y);    //ne valide pas ses entrees
+    //return grid.at(x, y); //valide ses entrees
 }
 
 std::string GOLTeamK::rule() const
@@ -49,7 +64,6 @@ GOL::Statistics GOLTeamK::statistics() const
 
 GOL::ImplementationInformation GOLTeamK::information() const
 {
-    // à faire
     return mInfo;
 }
 
@@ -60,7 +74,8 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
         height = 0;
     }
     mIteration = 0;
-    //mGrid.resize(width, height, defaultState);
+
+    grid.resize(width, height, defaultState);
 }
 
 bool GOLTeamK::setRule(std::string const& rule)
@@ -81,7 +96,8 @@ void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 
 void GOLTeamK::setState(int x, int y, State state)
 {
-    //mGrid.setAt(x, y, state);
+    grid.setValue(x, y, state); //ne valide pas ses entrees
+    //grid.setAt(x, y, state);  //valide ses entrees
 }
 
 void GOLTeamK::fill(State state)

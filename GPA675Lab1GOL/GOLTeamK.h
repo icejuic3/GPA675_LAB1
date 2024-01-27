@@ -1,4 +1,5 @@
 #pragma once
+
 #include "GOL.h"
 #include "GridTeamK.h"
 #include <regex>
@@ -30,8 +31,10 @@ public:
 	std::string rule() const override;
 	BorderManagement borderManagement() const override;
 	Color color(State state) const override;
+
 	Statistics statistics() const override;
-	ImplementationInformation information() const override;
+	ImplementationInformation information() const override; //
+
 	void resize(size_t width, size_t height, State defaultState) override;
 	bool setRule(std::string const& rule) override;
 	void setBorderManagement(BorderManagement borderManagement) override;
@@ -49,8 +52,8 @@ private:
 
 	GridTeamK grid;		
 
-
 	State mGrid;
+
 	std::string mRule;
 	BorderManagement mBorderManagement;
 	Color mAliveColor;
