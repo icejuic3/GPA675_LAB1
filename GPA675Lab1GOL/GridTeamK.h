@@ -19,6 +19,9 @@ public:																			//
 	GridTeamK& operator=(GridTeamK const&) = delete;							// 
 	GridTeamK& operator=(GridTeamK&&) = delete;									// 
 	~GridTeamK();														    	// 
+
+	//fonction qui detruit le tableau
+	void gridDelete();
 	
 	// Accesseurs et mutateurs de la grille										// 
 	size_t width() const;														// Accesseur retournant la largeur de la grille.
@@ -39,8 +42,8 @@ public:																			//
 	DataType& data();															// Accesseur en lecture/écriture sur le "buffer" de la grille.
 	
 private:																		// 
+	DataType mGrid;																//pointeur de pointeur
 	size_t mWidth;											    				// Il y a des attributs essentiels au fonctionnement de cette classe.
 	size_t mHeight;
 	size_t mSize;
-	DataType mGrid;																//pointeur de pointeur
 };

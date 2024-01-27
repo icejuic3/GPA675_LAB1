@@ -12,13 +12,13 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	:mWidth{ width }
 	,mHeight{ height }
 	,mSize{ width * height }
-	,mGrid{ new CellType * [height] }
+	,mGrid{ new CellType * [mSize] }
 {
-	for (size_t i{}; i < width; i++) {
+	for (size_t i{}; i < height; i++) {
 
-		mGrid[i] = new CellType [width];
+		mGrid[i] = new CellType [height];
 
-		for (size_t j{}; j < height; j++) {
+		for (size_t j{}; j < width; j++) {
 
 			mGrid[i][j] = initValue;
 		}
@@ -26,6 +26,11 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 }
 
 GridTeamK::~GridTeamK()
+{
+	gridDelete;
+}
+
+void GridTeamK::gridDelete()
 {
 	for (size_t i{}; i < mHeight; i++) {
 
@@ -52,6 +57,8 @@ size_t GridTeamK::size() const
 
 void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 {
+	gridDelete;
+
 	mWidth = width;
 	mHeight = height;
 	mSize = width * height;

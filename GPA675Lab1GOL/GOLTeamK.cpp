@@ -2,7 +2,10 @@
 
 size_t GOLTeamK::width() const
 {
-    return size_t(); //mGrid.width();
+    return 
+    
+    
+    //mGrid.width();
 }
 
 size_t GOLTeamK::height() const
