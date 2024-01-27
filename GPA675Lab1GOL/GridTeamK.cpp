@@ -40,17 +40,17 @@ void GridTeamK::gridDelete()
 	mGrid = nullptr;
 }
 
-size_t GridTeamK::width() const
+size_t GridTeamK::getWidth() const
 {
 	return mWidth;
 }
 
-size_t GridTeamK::height() const
+size_t GridTeamK::getHeight() const
 {
 	return mHeight;
 }
 
-size_t GridTeamK::size() const
+size_t GridTeamK::getSize() const
 {
 	return mSize;
 }

@@ -2,25 +2,23 @@
 
 size_t GOLTeamK::width() const
 {
-    return 
-    
-    
-    //mGrid.width();
+    return grid.getWidth();
 }
 
 size_t GOLTeamK::height() const
 {
-    return size_t(); //mGrid.height();
+    return grid.getHeight();
 }
 
 size_t GOLTeamK::size() const
 {
-    return size_t(); //mGrid.size();
+    return grid.getSize();
 }
 
 GOL::State GOLTeamK::state(int x, int y) const
 {
-    return State(); //mGrid.value(x,y);
+    return grid.value(x, y);
+    //return grid.at(x, y); //optionnel
 }
 
 std::string GOLTeamK::rule() const

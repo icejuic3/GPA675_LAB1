@@ -46,6 +46,10 @@ public:
 	void updateImage(uint32_t* buffer, size_t buffer_size) const override;
 
 private:
+
+	GridTeamK grid;		
+
+
 	State mGrid;
 	std::string mRule;
 	BorderManagement mBorderManagement;
@@ -54,6 +58,5 @@ private:
 	Statistics mStats;
 	ImplementationInformation mInfo;
 	IterationType mIteration;
-
 };
 

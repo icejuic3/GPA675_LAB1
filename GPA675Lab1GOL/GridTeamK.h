@@ -24,9 +24,9 @@ public:																			//
 	void gridDelete();
 	
 	// Accesseurs et mutateurs de la grille										// 
-	size_t width() const;														// Accesseur retournant la largeur de la grille.
-	size_t height() const;														// Accesseur retournant la hauteur de la grille.
-	size_t size() const;														// Accesseur retournant le nombre de cellule de la grille.
+	size_t getWidth() const;														// Accesseur retournant la largeur de la grille.
+	size_t getHeight() const;														// Accesseur retournant la hauteur de la grille.
+	size_t getSize() const;														// Accesseur retournant le nombre de cellule de la grille.
 	 
 	void resize(size_t width, size_t height, CellType initValue = CellType{});	// Mutateur modifiant la taille de la grille et initialise le contenu par la valeur spécifiée.
 	
