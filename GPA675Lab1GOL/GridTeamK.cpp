@@ -1,22 +1,22 @@
 #include "GridTeamK.h"
 
 GridTeamK::GridTeamK() 
-	:mWidth{0}
-	,mHeight{0}
-	,mSize{ mWidth* mHeight }
-	,mGrid{ new CellType* [mSize] }
+	:mWidth{ 0 }						
+	,mHeight{ 0 }						
+	,mSize{ 0 }
+	,mGrid{ nullptr }		
 {
 }
 
 GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
-	:mWidth{ width }
-	,mHeight{ height }
+	:mWidth{ width }						//column
+	,mHeight{ height }						//row
 	,mSize{ width * height }
-	,mGrid{ new CellType * [mSize] }
+	,mGrid{ new CellType * [height] }		//initialisation du pointeur de ligne
 {
 	for (size_t i{}; i < height; i++) {
 
-		mGrid[i] = new CellType [height];
+		mGrid[i] = new CellType [width];	//initialisation du pointeur de colonne
 
 		for (size_t j{}; j < width; j++) {
 
@@ -27,7 +27,7 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 
 GridTeamK::~GridTeamK()
 {
-	gridDelete;
+	gridDelete();
 }
 
 void GridTeamK::gridDelete()
@@ -57,7 +57,7 @@ size_t GridTeamK::size() const
 
 void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 {
-	gridDelete;
+	gridDelete();
 
 	mWidth = width;
 	mHeight = height;
