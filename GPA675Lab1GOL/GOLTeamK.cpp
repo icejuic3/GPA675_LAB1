@@ -2,17 +2,33 @@
 
 GOLTeamK::GOLTeamK()
 {
+    setInformation();
 }
 
 GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
 {
+    setInformation();
+}
 
+GOL::State GOLTeamK::getOppositeState(State state)
+{
+
+    if (state == State::alive) {
+
+        return State::dead;
+    }
+    else {
+
+        return State::alive;
+    }
+}
+
+void GOLTeamK::setInformation()
+{
     mInfo.title = "Game of life";
     mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, };
-
-
-
-
+    mInfo.answers = {};
+    mInfo.optionnalComments = {};
 }
 
 size_t GOLTeamK::width() const
@@ -102,6 +118,17 @@ void GOLTeamK::setState(int x, int y, State state)
 
 void GOLTeamK::fill(State state)
 {
+
+   for (size_t row{}; row < grid.getWidth(); row++) {
+
+        for (size_t column{}; column < grid.getHeight(); column++) {
+
+            setState(column, row, state); 
+        }
+   }
+    mIteration = 0;
+
+
     ////version non efficace et marche pas, va falloir faire des pointeurs
     //for (size_t i{}; i < mGrid.width(); i++) {
     //    for (size_t j{}; j < mGrid.height(); j++) {
@@ -113,6 +140,39 @@ void GOLTeamK::fill(State state)
 
 void GOLTeamK::fillAlternately(State firstCell)
 {
+    State oppositeState = getOppositeState(firstCell);
+
+    
+
+    for (size_t row{}; row < grid.getWidth(); row++) {
+        
+        for (size_t column{}; column < grid.getHeight(); column++) {
+
+            //if (row % 2 == 0) {
+            //    if (column % 2 == 0) {
+            //        setState(column, row, firstCell);
+            //    }
+            //    else {
+            //        setState(column, row, oppositeState);
+            //    }
+            //}
+            //else {
+            //    if (column % 2 == 0) {
+            //        setState(column, row, oppositeState);
+            //    }
+            //    else {
+            //        setState(column, row, firstCell);
+            //    }
+            //}
+
+            //la prochaine ligne resume tout ce code//
+            State cellstate = ((row + column) % 2 == 0) ? firstCell : oppositeState;    //l'opperateur ? resume cette ligne a --> Si VRAI alors cellstate vaut firstcell, sinon elle vaut oppositeState
+            setState(column, row, cellstate);          
+        }
+    }
+
+
+    mIteration = 0;
 }
 
 void GOLTeamK::randomize(double percentAlive)

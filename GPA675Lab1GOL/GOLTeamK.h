@@ -48,6 +48,13 @@ public:
 	void processOneStep() override;
 	void updateImage(uint32_t* buffer, size_t buffer_size) const override;
 
+
+
+	State getOppositeState(State state);	//fonction qui retourne un etat oppose
+	void setInformation();		//fonction pour les informations du projet
+
+
+
 private:
 
 	GridTeamK grid;		

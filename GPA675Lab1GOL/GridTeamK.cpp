@@ -14,13 +14,13 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	,mSize{ width * height }
 	,mGrid{ new CellType * [height] }		//initialisation du pointeur de ligne
 {
-	for (size_t i{}; i < height; i++) {
+	for (size_t row{}; row < height; row++) {
 
-		mGrid[i] = new CellType [width];	//initialisation du pointeur de colonne
+		mGrid[row] = new CellType [width];	//initialisation du pointeur de colonne
 
-		for (size_t j{}; j < width; j++) {
+		for (size_t column{}; column < width; column++) {
 
-			mGrid[i][j] = initValue;
+			mGrid[row][column] = initValue;
 		}
 	}
 }
@@ -64,13 +64,14 @@ void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 	mSize = width * height;
 	mGrid = new CellType * [height];			//initialise mGrid avec la nouvelle taille
 
-	for (size_t i{}; i < height; i++) {
 
-		mGrid[i] = new CellType[width];
+	for (size_t row{}; row < height; row++) {
 
-		for (size_t j{}; j < width; j++) {
+		mGrid[row] = new CellType[width];
 
-			mGrid[i][j] = initValue;
+		for (size_t column{}; column < width; column++) {
+
+			mGrid[row][column] = initValue;
 		}
 	}
 }
