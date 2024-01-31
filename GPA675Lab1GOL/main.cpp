@@ -23,7 +23,10 @@ int main(int argc, char* argv[])
 	// window.addEngine(new MonImplementationGOL);
     
 
-    //window.addEngine(new GOLTeamK);
-    //window.show();
-    //return application.exec();
+    window.addEngine(new GOLTeamK);
+    window.show();
+    return application.exec();
+
+
+
 }

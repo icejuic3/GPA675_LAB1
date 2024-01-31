@@ -1,8 +1,8 @@
 #pragma once
-#include "GOLTeamK.h"
+#include "GOL.h"
 
 // Définition des types														//
-using CellType = GOLTeamK::State;											// Correspond au type fondamental de chaque cellule de la grille. 
+using CellType = GOL::State;											// Correspond au type fondamental de chaque cellule de la grille. 
 using DataType = CellType**;												// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
 using namespace std;
 

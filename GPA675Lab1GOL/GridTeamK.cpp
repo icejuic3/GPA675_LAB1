@@ -12,7 +12,7 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	:mWidth{ width }						//column
 	,mHeight{ height }						//row
 	,mSize{ width * height }
-	,mGrid{ new CellType * [height] }		//initialisation du pointeur de ligne
+	,mGrid{ new CellType * [] }		//initialisation du pointeur de ligne
 {
 	for (size_t row{}; row < height; row++) {
 
@@ -103,11 +103,11 @@ void GridTeamK::setAt(int column, int row, CellType value)
 
 DataType const& GridTeamK::data() const
 {
-	return mGrid;
+	return mGrid; //a changer
 }
 
 DataType& GridTeamK::data()
 {
-	return mGrid;
+	return mGrid; //a changer
 }
 

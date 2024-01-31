@@ -3,32 +3,56 @@
 GOLTeamK::GOLTeamK()
 {
     setInformation();
+    setStats();
 }
 
 GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
+    :grid{width , height, defaultState}
+    ,mAliveColor{}
+    ,mDeadColor{}
+    ,mStats{}
+    ,mBorderManagement{}
+    ,mIteration{}
+    ,mInfo{}
 {
     setInformation();
+    setStats();
 }
 
-GOL::State GOLTeamK::getOppositeState(State state)
+GOLTeamK::~GOLTeamK()
 {
-
-    if (state == State::alive) {
-
-        return State::dead;
-    }
-    else {
-
-        return State::alive;
-    }
 }
 
 void GOLTeamK::setInformation()
 {
-    mInfo.title = "Game of life";
+    mInfo.title = "Game of life Team K";
     mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, };
     mInfo.answers = {};
     mInfo.optionnalComments = {};
+}
+
+void GOLTeamK::setStats()
+{
+    mStats.borderManagement = mBorderManagement;
+    mStats.height = grid.getHeight();
+    mStats.width = grid.getWidth();
+    mStats.totalCells = grid.getSize();
+    mStats.iteration = mIteration;
+    mStats.rule = mRule;
+
+
+
+    /*********faire un decompte de la grille**********/
+    mStats.totalAliveAbs;
+    mStats.totalDeadAbs;
+    
+    /********mettre en pourcentage par rapport le total de cellule**************/
+    mStats.totalAliveRel;
+    mStats.totalDeadRel;
+
+    /*******************/
+    mStats.tendencyAbs;
+    mStats.tendencyRel;
 }
 
 size_t GOLTeamK::width() const
@@ -74,7 +98,7 @@ GOL::Color GOLTeamK::color(State state) const
 
 GOL::Statistics GOLTeamK::statistics() const
 {
-    // à faire
+
     return mStats;
 }
 
@@ -100,8 +124,13 @@ bool GOLTeamK::setRule(std::string const& rule)
     if (std::regex_match(rule, pattern)) {
         mRule = rule;
         mIteration = 0;
+
+        return true;
     }
-    return false;
+    else
+    {
+        return false;
+    }
 }
 
 void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
@@ -119,64 +148,47 @@ void GOLTeamK::setState(int x, int y, State state)
 void GOLTeamK::fill(State state)
 {
 
-   for (size_t row{}; row < grid.getWidth(); row++) {
+   for (size_t row{}; row < grid.getHeight(); row++) {
 
-        for (size_t column{}; column < grid.getHeight(); column++) {
+        for (size_t column{}; column < grid.getWidth(); column++) {
 
             setState(column, row, state); 
         }
    }
     mIteration = 0;
 
-
-    ////version non efficace et marche pas, va falloir faire des pointeurs
-    //for (size_t i{}; i < mGrid.width(); i++) {
-    //    for (size_t j{}; j < mGrid.height(); j++) {
-    //        mGrid[i][j] = state;
-    //    }
-    //}
-    //mIteration = 0;
 }
 
 void GOLTeamK::fillAlternately(State firstCell)
 {
     State oppositeState = getOppositeState(firstCell);
 
-    
-
-    for (size_t row{}; row < grid.getWidth(); row++) {
+    for (size_t row{}; row < grid.getHeight(); row++) {
         
-        for (size_t column{}; column < grid.getHeight(); column++) {
+        for (size_t column{}; column < grid.getWidth(); column++) {
 
-            //if (row % 2 == 0) {
-            //    if (column % 2 == 0) {
-            //        setState(column, row, firstCell);
-            //    }
-            //    else {
-            //        setState(column, row, oppositeState);
-            //    }
-            //}
-            //else {
-            //    if (column % 2 == 0) {
-            //        setState(column, row, oppositeState);
-            //    }
-            //    else {
-            //        setState(column, row, firstCell);
-            //    }
-            //}
-
-            //la prochaine ligne resume tout ce code//
             State cellstate = ((row + column) % 2 == 0) ? firstCell : oppositeState;    //l'opperateur ? resume cette ligne a --> Si VRAI alors cellstate vaut firstcell, sinon elle vaut oppositeState
             setState(column, row, cellstate);          
         }
     }
-
-
     mIteration = 0;
 }
 
 void GOLTeamK::randomize(double percentAlive)
 {
+    std::mt19937 gen(std::random_device{}());               //generateur aleatoire
+    std::bernoulli_distribution prob(percentAlive);         //creation d'une instance qui recoit en parametre la probabilite qu'elle retourne True
+
+    for (size_t row{}; row < grid.getHeight(); row++) {
+
+        for (size_t column{}; column < grid.getWidth(); column++) {
+
+            State cellstate = prob(gen) ? State::alive : State::dead;
+
+            setState(row, column, cellstate);
+        }
+    }
+    mIteration = 0;
 }
 
 bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int centerY)
@@ -205,12 +217,53 @@ void GOLTeamK::processOneStep()
 
 void GOLTeamK::updateImage(uint32_t* buffer, size_t buffer_size) const
 {
+    //size_t x{}; //index pour parcourir le buffer
+    //CellType* cur{};
+    //DataType myGrid = grid.data(); //myGrid est de type Celltype**
+    //uint8_t* end{ cur + buffer_size };
+
+    //while (cur < end) {
+
+
+    //    (buffer + x) = (cur) ? mAliveColor : mDeadColor;
+    //    ++x;
+    //    ++cur;
+
+    //}
+    
+
+    //uint8_t* cur{};
+    //uint8_t* end{ cur + buffer_size };
+
+
+    //if (buffer_size < grid.getSize()) {
+    //    // Gérer l'erreur: le buffer n'est pas assez grand.
+    //    return;
+    //}
+
     size_t x{};
-    
-   /* while (CUR < buffer_size) {
-        *(buffer + x) = *(CUR) ? : mAliveColor : mDeadColor;
-        ++x;
-        ++CUR;
-    
-    }*/
+    DataType myGrid = grid.data();
+
+    for (size_t row{}; row < grid.getHeight(); ++row) {
+
+        for (size_t column{}; column < grid.getWidth(); ++column) {
+
+            Color cellColor = (myGrid[row][column] == State::alive) ? mAliveColor : mDeadColor;
+            buffer[x] = (0xff << 24) | (cellColor.red << 16) | (cellColor.green << 8) | cellColor.blue;
+            x++;
+        }
+    }
 }
+
+GOL::State GOLTeamK::getOppositeState(State state)
+{
+    if (state == State::alive) {
+
+        return State::dead;
+    }
+    else {
+
+        return State::alive;
+    }
+}
+
