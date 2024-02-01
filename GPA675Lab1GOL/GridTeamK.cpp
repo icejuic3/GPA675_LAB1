@@ -12,17 +12,24 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	:mWidth{ width }						//column
 	,mHeight{ height }						//row
 	,mSize{ width * height }
-	,mGrid{ new CellType * [] }		//initialisation du pointeur de ligne
+	,mGrid{ new CellType  [mSize]}		//initialisation du pointeur de ligne
 {
-	for (size_t row{}; row < height; row++) {
 
-		mGrid[row] = new CellType [width];	//initialisation du pointeur de colonne
+	for (DataType cur{mGrid}; cur < mGrid + mSize; ++cur) {
 
-		for (size_t column{}; column < width; column++) {
-
-			mGrid[row][column] = initValue;
-		}
+		*cur = initValue;
 	}
+
+
+	//for (size_t row{}; row < height; row++) {
+
+	//	mGrid[row] = new CellType [width];	//initialisation du pointeur de colonne
+
+	//	for (size_t column{}; column < width; column++) {
+
+	//		mGrid[row][column] = initValue;
+	//	}
+	//}
 }
 
 GridTeamK::~GridTeamK()
@@ -32,10 +39,6 @@ GridTeamK::~GridTeamK()
 
 void GridTeamK::gridDelete()
 {
-	for (size_t i{}; i < mHeight; i++) {
-
-		delete[] mGrid[i];
-	}
 	delete[] mGrid;
 	mGrid = nullptr;
 }
@@ -62,34 +65,46 @@ void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 	mWidth = width;
 	mHeight = height;
 	mSize = width * height;
-	mGrid = new CellType * [height];			//initialise mGrid avec la nouvelle taille
+	mGrid = new CellType [mSize];			//initialise mGrid avec la nouvelle taille
 
 
-	for (size_t row{}; row < height; row++) {
+	for (DataType cur{ mGrid }; cur < mGrid + mSize; ++cur) {
 
-		mGrid[row] = new CellType[width];
-
-		for (size_t column{}; column < width; column++) {
-
-			mGrid[row][column] = initValue;
-		}
+		*cur = initValue;
 	}
+
+
+	//for (size_t row{}; row < height; row++) {
+
+	//	mGrid[row] = new CellType[width];
+
+	//	for (size_t column{}; column < width; column++) {
+
+	//		mGrid[row][column] = initValue;
+	//	}
+	//}
 }
 
 CellType GridTeamK::value(int column, int row) const
 {
-	return mGrid[row][column];
+
+	return mGrid[row * mWidth + (column)];
+
+	//return mGrid[row][column];
 }
 
 void GridTeamK::setValue(int column, int row, CellType value)
 {
-	mGrid[row][column] = value;
+	mGrid[row * mWidth + (column)] = value;
+
+
+	//mGrid[row][column] = value;
 }
 
 optional<CellType> GridTeamK::at(int column, int row) const
 {
 	if (row >= 0 && row < mHeight && column >= 0 && column < mWidth) {
-		return mGrid[row][column];
+		return mGrid[row * mWidth + (column)];
 	}
 	return nullopt;
 }
@@ -97,7 +112,7 @@ optional<CellType> GridTeamK::at(int column, int row) const
 void GridTeamK::setAt(int column, int row, CellType value)
 {
 	if (row >= 0 && row < mHeight && column >= 0 && column < mWidth) {
-		mGrid[row][column] = value;
+		mGrid[row * mWidth + (column)] = value;
 	}
 }
 

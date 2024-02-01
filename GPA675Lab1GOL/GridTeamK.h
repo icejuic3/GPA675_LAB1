@@ -3,7 +3,7 @@
 
 // Définition des types														//
 using CellType = GOL::State;											// Correspond au type fondamental de chaque cellule de la grille. 
-using DataType = CellType**;												// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
+using DataType = CellType*;												// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
 using namespace std;
 
 

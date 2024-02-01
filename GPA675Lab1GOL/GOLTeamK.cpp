@@ -26,7 +26,7 @@ GOLTeamK::~GOLTeamK()
 void GOLTeamK::setInformation()
 {
     mInfo.title = "Game of life Team K";
-    mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, };
+    mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"},};
     mInfo.answers = {};
     mInfo.optionnalComments = {};
 }
@@ -116,6 +116,9 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
     mIteration = 0;
 
     grid.resize(width, height, defaultState);
+    
+
+
 }
 
 bool GOLTeamK::setRule(std::string const& rule)
@@ -156,7 +159,6 @@ void GOLTeamK::fill(State state)
         }
    }
     mIteration = 0;
-
 }
 
 void GOLTeamK::fillAlternately(State firstCell)
@@ -217,42 +219,39 @@ void GOLTeamK::processOneStep()
 
 void GOLTeamK::updateImage(uint32_t* buffer, size_t buffer_size) const
 {
-    //size_t x{}; //index pour parcourir le buffer
-    //CellType* cur{};
-    //DataType myGrid = grid.data(); //myGrid est de type Celltype**
-    //uint8_t* end{ cur + buffer_size };
+    size_t x{}; //index pour parcourir le buffer
+    DataType myGrid{ grid.data() }; //myGrid est de type Celltype*
+    //* cur{};
+    // uint8_t end {(static_cast<uint8_t> (*myGrid))+buffer_size};
 
-    //while (cur < end) {
-
-
-    //    (buffer + x) = (cur) ? mAliveColor : mDeadColor;
-    //    ++x;
-    //    ++cur;
-
-    //}
     
 
-    //uint8_t* cur{};
-    //uint8_t* end{ cur + buffer_size };
+    while (x < buffer_size) {
 
+        Color cellColor = (*myGrid == State::alive) ? mAliveColor : mDeadColor;
 
-    //if (buffer_size < grid.getSize()) {
-    //    // Gérer l'erreur: le buffer n'est pas assez grand.
-    //    return;
-    //}
+        *(buffer+x) = (0xff << 24) | (cellColor.red << 16) | (cellColor.green << 8) | cellColor.blue;
 
-    size_t x{};
-    DataType myGrid = grid.data();
-
-    for (size_t row{}; row < grid.getHeight(); ++row) {
-
-        for (size_t column{}; column < grid.getWidth(); ++column) {
-
-            Color cellColor = (myGrid[row][column] == State::alive) ? mAliveColor : mDeadColor;
-            buffer[x] = (0xff << 24) | (cellColor.red << 16) | (cellColor.green << 8) | cellColor.blue;
-            x++;
-        }
+        ++x;
+        ++myGrid;
     }
+    
+
+
+
+
+    //size_t x{};
+    //DataType myGrid = grid.data();
+
+    //for (size_t row{}; row < grid.getHeight(); ++row) {
+
+    //    for (size_t column{}; column < grid.getWidth(); ++column) {
+
+    //        Color cellColor = (myGrid[row][column] == State::alive) ? mAliveColor : mDeadColor;
+    //        buffer[x] = (0xff << 24) | (cellColor.red << 16) | (cellColor.green << 8) | cellColor.blue;
+    //        x++;
+    //    }
+    //}
 }
 
 GOL::State GOLTeamK::getOppositeState(State state)
