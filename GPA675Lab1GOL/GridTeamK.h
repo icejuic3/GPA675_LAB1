@@ -13,10 +13,10 @@ public:																			//
 	
 	// Définition des constructeurs / destructeur								//
 	GridTeamK();																// 
-	GridTeamK(size_t width, size_t height, CellType initValue = CellType{});	// 
+	GridTeamK(size_t width, size_t height, CellType initValue = CellType{});
 	GridTeamK(GridTeamK const&) = delete;										// 
 	GridTeamK(GridTeamK&&) = delete;											// 
-	GridTeamK& operator=(GridTeamK const&) = delete;							// 
+	GridTeamK& operator=(GridTeamK const&);							// 
 	GridTeamK& operator=(GridTeamK&&) = delete;									// 
 	~GridTeamK();														    	// 
 

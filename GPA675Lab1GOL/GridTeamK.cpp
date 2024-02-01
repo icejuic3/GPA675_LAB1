@@ -32,6 +32,11 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	//}
 }
 
+GridTeamK& GridTeamK::operator=(GridTeamK const&)
+{
+	return *this;
+}
+
 GridTeamK::~GridTeamK()
 {
 	gridDelete();

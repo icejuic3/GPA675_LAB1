@@ -48,7 +48,8 @@ public:
 	void setSolidColor(State state, Color const& color) override;									//done		fonction pour definir la couleur
 	void processOneStep() override;																	//a faire
 	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//a verifier
-
+	//void browseHandling(GridTeamK& grid, void(*task)(State &));
+	int getAliveAround(bool onBorder, State* pastGrid);
 
 
 	State getOppositeState(State state);															//fonction qui retourne un etat oppose
@@ -57,8 +58,11 @@ public:
 
 private:
 
-	GridTeamK grid;		
+	GridTeamK mGrid;
+	GridTeamK mPastGrid;
 	std::string mRule;
+	bool mBornRule[9];
+	bool mSurviveRule[9];
 	BorderManagement mBorderManagement;
 
 	Color mAliveColor;	// une struct contenant trois channel de couleur (uint8_t) pour les cellules vivantes
