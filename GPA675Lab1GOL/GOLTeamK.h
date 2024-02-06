@@ -49,7 +49,7 @@ public:
 	void processOneStep() override;																	//a faire
 	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//a verifier
 	//void browseHandling(GridTeamK& grid, void(*task)(State &));
-	int getAliveAround(bool onBorder, State* pastGrid);
+	int getAliveAround(int column, int row, bool onBorder, State* pastGrid);
 
 
 	State getOppositeState(State state);															//fonction qui retourne un etat oppose

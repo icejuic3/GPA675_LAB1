@@ -297,7 +297,7 @@ void GOLTeamK::processOneStep()
             setState(column,row,*pastGrid);
         }
         else {
-            int alive = getAliveAround(onBorder, pastGrid);
+            int alive = getAliveAround(column, row, onBorder, pastGrid);
 
             if (mGrid.value(column, row) == State::alive) {
                 if (!mSurviveRule[alive]) {
@@ -375,9 +375,9 @@ void GOLTeamK::updateImage(uint32_t* buffer, size_t buffer_size) const
 }
 
 
-int GOLTeamK::getAliveAround(bool onBorder, State* pastGrid)
+int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid)
 {
-    int aliveCells{};
+    int aliveCells = 0;
     int width = mGrid.getWidth();
     int height = mGrid.getHeight();
 
@@ -392,10 +392,122 @@ int GOLTeamK::getAliveAround(bool onBorder, State* pastGrid)
     
 
     if (mBorderManagement == BorderManagement::mirror && onBorder) {
+        if (row == 0 && column == 0) {
+            if (*right == State::alive) {
+                aliveCells+=2;
+            }
+            if (*bottom == State::alive) {
+                aliveCells += 2;
+            }
+            if (*bottomRight == State::alive) {
+                aliveCells += 2;
+            }
+        }
+        else if (row == 0 && column == height - 1) {
+            if (*right == State::alive) {
+                aliveCells += 2;
+            }
+            if (*top == State::alive) {
+                aliveCells += 2;
+            }
+            if (*topRight == State::alive) {
+                aliveCells += 2;
+            }
+        }
+        else if (row == 0) {
+            if (*top == State::alive) {
+                ++aliveCells;
+            }
+            if (*topRight == State::alive) {
+                aliveCells += 2;
+            }
+            if (*right == State::alive) {
+                aliveCells += 2;
+            }
+            if (*bottom == State::alive) {
+                ++aliveCells;
+            }
+            if (*bottomRight == State::alive) {
+                aliveCells += 2;
+            }
 
+        }
+        else if (row == width-1 && column == 0) {
+            if (*left == State::alive) {
+                aliveCells += 2;
+            }
+            if (*bottom == State::alive) {
+                aliveCells += 2;
+            }
+            if (*bottomLeft == State::alive) {
+                aliveCells += 2;
+            }
+        }
+        else if (row == width-1 && column == height - 1) {
+            if (*left == State::alive) {
+                aliveCells += 2;
+            }
+            if (*top == State::alive) {
+                aliveCells += 2;
+            }
+            if (*topLeft == State::alive) {
+                aliveCells += 2;
+            }
+        }
+        else if (row == width - 1) {
+            if (*top == State::alive) {
+                ++aliveCells;
+            }
+            if (*topLeft == State::alive) {
+                aliveCells += 2;
+            }
+            if (*left == State::alive) {
+                aliveCells += 2;
+            }
+            if (*bottom == State::alive) {
+                ++aliveCells;
+            }
+            if (*bottomLeft == State::alive) {
+                aliveCells += 2;
+            }
+
+        } 
     }
     else if (mBorderManagement == BorderManagement::warping && onBorder) {
-
+        if (row == 0 && column == 0) {
+            topLeft = pastGrid +(width * height - 1);
+            top = pastGrid + (height * (width - 1));
+            topRight = pastGrid + (height * (width - 1) + 1);
+            left = pastGrid + width - 1;
+            bottomLeft = pastGrid + (2*width - 1);
+        }
+        else if (row == 0 && column == height - 1) {
+            topLeft = pastGrid - 1;
+            left = pastGrid + width - 1;
+            bottomLeft = pastGrid - (width*(height-2) - 1);
+            bottom = pastGrid - (width*(height-1));
+            bottomRight = pastGrid - (width * (height - 1) + 1);
+        }
+        else if (row == 0) {
+            topLeft = pastGrid + (2*width) - 1;                     //Equivalent de bottomLeft (Left->topLeft, bottomLeft->Left) 
+        }
+        else if (row == width - 1 && column == 0) {
+            topLeft = pastGrid + (width * (height-1)-1) ;
+            top = pastGrid + (width * (height - 1));
+            topRight = pastGrid + (width*(height-2) + 1);
+            right = pastGrid - width + 1;
+            bottomRight = pastGrid + 1;
+        }
+        else if (row == width - 1 && column == height - 1) {
+            topRight = pastGrid - (width*(height-2)) + 1;
+            right = pastGrid - width + 1;
+            bottomLeft = pastGrid - (width*height) + 1;
+            bottom = pastGrid - (width * (height-1));
+            bottomRight = pastGrid - (width * (height - 1)) - 1;
+        }
+        else if (row == width - 1) {
+            bottomRight = pastGrid - (2*width) + 1;                 //Equivalent de topRight (Right->bottomRight, bottomRight->Right)
+        }
     }
     else {
         if (*topLeft == State::alive) {
