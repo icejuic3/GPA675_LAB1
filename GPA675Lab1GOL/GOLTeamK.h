@@ -6,7 +6,7 @@
 #include <random>
 
 
-class GOLTeamK: public GOL
+class GOLTeamK : public GOL
 {
 public:
 	//! \brief Constructeur par défaut.
@@ -20,10 +20,10 @@ public:
 	// 
 	// Les 4 autres fonctions spéciales sont laissées à votre discrétion.
 	// Toutefois, un simple -delete- est suffisant pour ce premier laboratoire.
-	GOLTeamK(GOLTeamK const &) = delete;
-	GOLTeamK(GOLTeamK &&) = delete;
-	GOLTeamK& operator=(GOLTeamK const &) = delete;
-	GOLTeamK& operator=(GOLTeamK &&) = delete;
+	GOLTeamK(GOLTeamK const&) = delete;
+	GOLTeamK(GOLTeamK&&) = delete;
+	GOLTeamK& operator=(GOLTeamK const&) = delete;
+	GOLTeamK& operator=(GOLTeamK&&) = delete;
 
 	// Inherited via GOL
 	size_t width() const override;																	//done
@@ -50,6 +50,7 @@ public:
 	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//a verifier
 	//void browseHandling(GridTeamK& grid, void(*task)(State &));
 	int getAliveAround(int column, int row, bool onBorder, State* pastGrid);
+	void copyGrid();
 
 
 	State getOppositeState(State state);															//fonction qui retourne un etat oppose
