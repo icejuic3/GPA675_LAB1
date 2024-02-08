@@ -3,7 +3,7 @@
 GOLTeamK::GOLTeamK()
 {
     setInformation();
-    setStats();
+    //setStats();
 }
 
 GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
@@ -18,9 +18,11 @@ GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
     , mBornRule{}
     , mSurviveRule{}
     , mRule{}
+
+
 {
     setInformation();
-    setStats();
+  //  setStats();
 }
 
 GOLTeamK::~GOLTeamK()
@@ -35,20 +37,28 @@ void GOLTeamK::setInformation()
     mInfo.optionnalComments = {};
 }
 
-void GOLTeamK::setStats()
+void GOLTeamK::setStats(State state)
 {
-    mStats.borderManagement = mBorderManagement;
-    mStats.height = mGrid.getHeight();
-    mStats.width = mGrid.getWidth();
-    mStats.totalCells = mGrid.getSize();
-    mStats.iteration = mIteration;
-    mStats.rule = mRule;
+    //mStats.borderManagement = mBorderManagement;    //fait
+    //mStats.height = mGrid.getHeight();  //fait
+    //mStats.width = mGrid.getWidth();    //fait
+    //mStats.totalCells = mGrid.getSize();    //fait
+    //mStats.iteration = mIteration;  //fait
+    //mStats.rule = mRule;    //fait
 
 
 
-    /*********faire un decompte de la grille**********/
-    mStats.totalAliveAbs;
-    mStats.totalDeadAbs;
+    if (state == State::alive) {
+
+        (*mStats.totalAliveAbs)++;
+
+    }else if (state == State::dead) {
+
+        (*mStats.totalDeadAbs)++;
+    }
+
+
+
 
     /********mettre en pourcentage par rapport le total de cellule**************/
     mStats.totalAliveRel;
@@ -59,13 +69,23 @@ void GOLTeamK::setStats()
     mStats.tendencyRel;
 }
 
+void GOLTeamK::resetStats()
+{
+    mStats.iteration = 0;
+    mStats.tendencyAbs = 0;
+    mStats.tendencyRel = 0;
+    mStats.totalAliveAbs = 0;
+    mStats.totalDeadAbs = 0;
+    mStats.totalAliveRel = 0;
+    mStats.totalDeadRel = 0;
+}
+
 bool GOLTeamK::onBorder(size_t row, size_t column)
 {
     if (row == 0 || row == mGrid.getHeight() - 1 || column == 0 || column == mGrid.getWidth() - 1) {
 
         return true;
     }
-
     return false;
 }
 
@@ -79,10 +99,8 @@ bool GOLTeamK::ignoreBorder()
 
         return true;
     }
-
     return false;
 }
-
 
 void GOLTeamK::fillBorder(size_t row, size_t column, State state)
 {
@@ -96,8 +114,6 @@ void GOLTeamK::fillBorder(size_t row, size_t column, State state)
         setState(column, row, state);
     }
 }
-
-
 
 size_t GOLTeamK::width() const
 {
@@ -116,27 +132,12 @@ size_t GOLTeamK::size() const
 
 GOL::State GOLTeamK::state(int x, int y) const
 {
-    return mGrid.value(x, y);    //ne valide pas ses entrees
-    //return grid.at(x, y); //valide ses entrees
+    return mGrid.value(x, y);       //ne valide pas ses entrees
+    //return grid.at(x, y);           //valide ses entrees
 }
 
 std::string GOLTeamK::rule() const
 {
-    /*std::string rule( "B" );
-    for (uint8_t i{ 0 }; i < 10; i++) {
-        if (mBornRule[i]) {
-            char num = '0' + i;
-            rule += num;
-        }
-    }
-    rule + "/S";
-    for (uint8_t i{ 0 }; i < 10; i++) {
-        if (mSurviveRule[i]) {
-            char num = '0' + i;
-            rule += num;
-        }
-    }*/
-
     return mRule;
 }
 
@@ -157,7 +158,6 @@ GOL::Color GOLTeamK::color(State state) const
 
 GOL::Statistics GOLTeamK::statistics() const
 {
-
     return mStats;
 }
 
@@ -172,14 +172,9 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
         width = 0;
         height = 0;
     }
-    mIteration = 0;
 
     mGrid.resize(width, height, defaultState);
     mPastGrid.resize(width, height, defaultState);
-
-
-
-    mGrid.resize(width, height, defaultState);
 
     //ajustement des couleurs de bordures
     for (size_t i{}; i < mGrid.getSize(); i++) {
@@ -197,17 +192,21 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
             }
         }
     }
+    resetStats();
+    mIteration = 0;
 
-
-
+    mStats.height = mGrid.getHeight();
+    mStats.width = mGrid.getWidth();
+    mStats.totalCells = mGrid.getSize();
 }
 
 bool GOLTeamK::setRule(std::string const& rule)
 {
     const std::regex pattern{ "^B([0-8]{0,9})/S([0-8]{0,9})$", std::regex_constants::icase };
     std::smatch matches;
+
     if (std::regex_match(rule, matches, pattern)) {
-        mRule = rule;
+        mStats.rule = mRule = rule;
 
         for (int i{}; i < 9; ++i) {
             mBornRule[i] = false;
@@ -227,8 +226,7 @@ bool GOLTeamK::setRule(std::string const& rule)
             int num = digit - '0';
             mSurviveRule[num] = true;
         }
-        mIteration = 0;
-
+        mStats.iteration = mIteration = 0;
         return true;
     }
     else
@@ -239,18 +237,21 @@ bool GOLTeamK::setRule(std::string const& rule)
 
 void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 {
-    mBorderManagement = borderManagement;
-    mIteration = 0;
+    mStats.borderManagement = mBorderManagement = borderManagement;
+    mStats.iteration = mIteration = 0;
 }
 
 void GOLTeamK::setState(int x, int y, State state)
 {
     mGrid.setValue(x, y, state); //ne valide pas ses entrees
     //grid.setAt(x, y, state);  //valide ses entrees
+
+    setStats(state);
 }
 
 void GOLTeamK::fill(State state)
 {
+    resetStats();                                           //les stats sont remis à zéro
 
     for (size_t i{}; i < mGrid.getSize(); i++) {
 
@@ -264,12 +265,14 @@ void GOLTeamK::fill(State state)
         else {
             setState(column, row, state);
         }
+
     }
     mIteration = 0;
 }
 
 void GOLTeamK::fillAlternately(State firstCell)
 {
+    resetStats();
     State oppositeState = getOppositeState(firstCell);
 
     for (size_t i{}; i < mGrid.getSize(); i++) {
@@ -291,10 +294,9 @@ void GOLTeamK::fillAlternately(State firstCell)
 
 void GOLTeamK::randomize(double percentAlive)
 {
+    resetStats();
     std::mt19937 gen(std::random_device{}());               //generateur aleatoire
     std::bernoulli_distribution prob(percentAlive);         //creation d'une instance qui recoit en parametre la probabilite qu'elle retourne True
-
-
 
     for (size_t i{}; i < mGrid.getSize(); i++) {
 
@@ -307,7 +309,6 @@ void GOLTeamK::randomize(double percentAlive)
             fillBorder(row, column, cellstate);
         }
         else {
-
             setState(column, row, cellstate);
         }
     }
@@ -341,6 +342,8 @@ void GOLTeamK::processOneStep()
     const size_t size = mGrid.getSize();
     const bool ignoreBorder = mBorderManagement == BorderManagement::immutableAsIs || mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive;
     copyGrid();
+
+
     State* pastGrid{ mPastGrid.data() };
 
     for (size_t i{}; i < size; ++i) {
@@ -367,8 +370,9 @@ void GOLTeamK::processOneStep()
         }
         ++pastGrid;
     }
+    mStats.iteration = ++mIteration;
 
-    ++mIteration;
+
 
     /*   const bool ignoreBorder = mBorderManagement == BorderManagement::immutableAsIs || mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive;
        int iter{};
@@ -620,7 +624,6 @@ void GOLTeamK::copyGrid()
         int column = i % width;
         mPastGrid.setValue(row, column, *(grid + i));
     }
-
 }
 
 //void GOLTeamK::browseHandling(GridTeamK& grid, void(*task)(State &))
@@ -655,4 +658,3 @@ GOL::State GOLTeamK::getOppositeState(State state)
         return State::alive;
     }
 }
-
