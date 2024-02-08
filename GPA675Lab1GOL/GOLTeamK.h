@@ -57,6 +57,15 @@ public:
 	void setInformation();																			//fonction pour les informations du projet
 	void setStats();
 
+
+	bool onBorder(size_t row, size_t column);														//fonction qui verifie si nous sommes sur une bordure
+	bool ignoreBorder();																			//fonction qui verifie les bordures non modifiables
+	void fillBorder(size_t row, size_t column, State state);
+
+
+
+
+
 private:
 
 	GridTeamK mGrid;

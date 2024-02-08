@@ -59,6 +59,46 @@ void GOLTeamK::setStats()
     mStats.tendencyRel;
 }
 
+bool GOLTeamK::onBorder(size_t row, size_t column)
+{
+    if (row == 0 || row == mGrid.getHeight() - 1 || column == 0 || column == mGrid.getWidth() - 1) {
+
+        return true;
+    }
+
+    return false;
+}
+
+bool GOLTeamK::ignoreBorder()
+{
+    //les Bordures non modifiables 
+
+    if (mBorderManagement == BorderManagement::immutableAsIs
+        || mBorderManagement == BorderManagement::foreverDead
+        || mBorderManagement == BorderManagement::foreverAlive) {
+
+        return true;
+    }
+
+    return false;
+}
+
+
+void GOLTeamK::fillBorder(size_t row, size_t column, State state)
+{
+    if (mBorderManagement == BorderManagement::foreverDead) {           //si foreverDead, alors cellule morte
+        setState(column, row, State::dead);
+    }
+    else if (mBorderManagement == BorderManagement::foreverAlive) {     //si foreverAlive, alors cellule vivante
+        setState(column, row, State::alive);
+    }
+    else if (mBorderManagement == BorderManagement::immutableAsIs) {
+        setState(column, row, state);
+    }
+}
+
+
+
 size_t GOLTeamK::width() const
 {
     return mGrid.getWidth();
@@ -137,6 +177,29 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
     mGrid.resize(width, height, defaultState);
     mPastGrid.resize(width, height, defaultState);
 
+
+
+    mGrid.resize(width, height, defaultState);
+
+    //ajustement des couleurs de bordures
+    for (size_t i{}; i < mGrid.getSize(); i++) {
+
+        size_t column = i % mGrid.getWidth();
+        size_t row = i / mGrid.getWidth();
+
+        if (onBorder(row, column) && ignoreBorder()) {
+
+            if (mBorderManagement == BorderManagement::foreverDead) {           //si foreverDead, alors cellule morte
+                setState(column, row, State::dead);
+            }
+            else if (mBorderManagement == BorderManagement::foreverAlive) {     //si foreverAlive, alors cellule vivante
+                setState(column, row, State::alive);
+            }
+        }
+    }
+
+
+
 }
 
 bool GOLTeamK::setRule(std::string const& rule)
@@ -189,20 +252,17 @@ void GOLTeamK::setState(int x, int y, State state)
 void GOLTeamK::fill(State state)
 {
 
-    for (size_t row{}; row < mGrid.getHeight(); row++) {
+    for (size_t i{}; i < mGrid.getSize(); i++) {
 
-        for (size_t column{}; column < mGrid.getWidth(); column++) {
-            if (row == 0 || row == mGrid.getHeight() - 1 || column == 0 || column == mGrid.getWidth() - 1) {
-                if (mBorderManagement == BorderManagement::foreverDead) {
-                    setState(column, row, State::dead);
-                }
-                else if (mBorderManagement == BorderManagement::foreverAlive) {
-                    setState(column, row, State::alive);
-                }
-            }
-            else {
-                setState(column, row, state);
-            }
+        size_t column = i % mGrid.getWidth();
+        size_t row = i / mGrid.getWidth();
+
+        if (onBorder(row, column) && ignoreBorder()) {
+
+            fillBorder(row, column, state);
+        }
+        else {
+            setState(column, row, state);
         }
     }
     mIteration = 0;
@@ -212,21 +272,18 @@ void GOLTeamK::fillAlternately(State firstCell)
 {
     State oppositeState = getOppositeState(firstCell);
 
-    for (size_t row{}; row < mGrid.getHeight(); row++) {
+    for (size_t i{}; i < mGrid.getSize(); i++) {
 
-        for (size_t column{}; column < mGrid.getWidth(); column++) {
-            if (row == 0 || row == mGrid.getHeight() - 1 || column == 0 || column == mGrid.getWidth() - 1) {
-                if (mBorderManagement == BorderManagement::foreverDead) {
-                    setState(column, row, State::dead);
-                }
-                else if (mBorderManagement == BorderManagement::foreverAlive) {
-                    setState(column, row, State::alive);
-                }
-            }
-            else {
-                State cellstate = ((row + column) % 2 == 0) ? firstCell : oppositeState;    //l'opperateur ? resume cette ligne a --> Si VRAI alors cellstate vaut firstcell, sinon elle vaut oppositeState
-                setState(column, row, cellstate);
-            }
+        size_t column = i % mGrid.getWidth();
+        size_t row = i / mGrid.getWidth();
+        State cellstate = ((row + column) % 2 == 0) ? firstCell : oppositeState;    //l'opperateur ? resume cette ligne a --> Si VRAI alors cellstate vaut firstcell, sinon elle vaut oppositeState
+
+        if (onBorder(row, column) && ignoreBorder()) {
+
+            fillBorder(row, column, cellstate);
+        }
+        else {
+            setState(column, row, cellstate);
         }
     }
     mIteration = 0;
@@ -237,22 +294,21 @@ void GOLTeamK::randomize(double percentAlive)
     std::mt19937 gen(std::random_device{}());               //generateur aleatoire
     std::bernoulli_distribution prob(percentAlive);         //creation d'une instance qui recoit en parametre la probabilite qu'elle retourne True
 
-    for (size_t row{}; row < mGrid.getHeight(); row++) {
 
-        for (size_t column{}; column < mGrid.getWidth(); column++) {
-            if (row == 0 || row == mGrid.getHeight() - 1 || column == 0 || column == mGrid.getWidth() - 1) {
-                if (mBorderManagement == BorderManagement::foreverDead) {
-                    setState(column, row, State::dead);
-                }
-                else if (mBorderManagement == BorderManagement::foreverAlive) {
-                    setState(column, row, State::alive);
-                }
-            }
-            else {
-                State cellstate = prob(gen) ? State::alive : State::dead;
 
-                setState(column, row, cellstate);
-            }
+    for (size_t i{}; i < mGrid.getSize(); i++) {
+
+        size_t column = i % mGrid.getWidth();
+        size_t row = i / mGrid.getWidth();
+
+        State cellstate = prob(gen) ? State::alive : State::dead;
+
+        if (onBorder(row, column) && ignoreBorder()) {
+            fillBorder(row, column, cellstate);
+        }
+        else {
+
+            setState(column, row, cellstate);
         }
     }
     mIteration = 0;
