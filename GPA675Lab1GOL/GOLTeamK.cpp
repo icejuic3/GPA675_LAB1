@@ -18,8 +18,6 @@ GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
     , mBornRule{}
     , mSurviveRule{}
     , mRule{}
-
-
 {
     setInformation();
   //  setStats();
@@ -37,32 +35,27 @@ void GOLTeamK::setInformation()
     mInfo.optionnalComments = {};
 }
 
-void GOLTeamK::setStats(State state)
+void GOLTeamK::setStats()
 {
-    //mStats.borderManagement = mBorderManagement;    //fait
-    //mStats.height = mGrid.getHeight();  //fait
-    //mStats.width = mGrid.getWidth();    //fait
-    //mStats.totalCells = mGrid.getSize();    //fait
-    //mStats.iteration = mIteration;  //fait
-    //mStats.rule = mRule;    //fait
 
+    for (size_t i{}; i < mGrid.getSize(); i++) {
 
+        size_t column = i % mGrid.getWidth();
+        size_t row = i / mGrid.getWidth();
 
-    if (state == State::alive) {
+        if (mGrid.value(column,row) == State::alive) {
 
-        (*mStats.totalAliveAbs)++;
+            (*mStats.totalAliveAbs)++;
+        }
+        else if (mGrid.value(column, row) == State::dead) {
 
-    }else if (state == State::dead) {
-
-        (*mStats.totalDeadAbs)++;
+            (*mStats.totalDeadAbs)++;
+        } 
     }
 
-
-
-
-    /********mettre en pourcentage par rapport le total de cellule**************/
-    mStats.totalAliveRel;
-    mStats.totalDeadRel;
+    mStats.totalAliveRel = static_cast<float>(*mStats.totalAliveAbs) / (*mStats.totalCells);
+    mStats.totalDeadRel = static_cast<float>(*mStats.totalDeadAbs) / (*mStats.totalCells);
+    
 
     /*******************/
     mStats.tendencyAbs;
@@ -71,7 +64,6 @@ void GOLTeamK::setStats(State state)
 
 void GOLTeamK::resetStats()
 {
-    mStats.iteration = 0;
     mStats.tendencyAbs = 0;
     mStats.tendencyRel = 0;
     mStats.totalAliveAbs = 0;
@@ -168,13 +160,14 @@ GOL::ImplementationInformation GOLTeamK::information() const
 
 void GOLTeamK::resize(size_t width, size_t height, State defaultState)
 {
+    resetStats();
     if (width == 0 || height == 0) {
         width = 0;
         height = 0;
     }
 
     mGrid.resize(width, height, defaultState);
-    mPastGrid.resize(width, height, defaultState);
+    mPastGrid.resize(width, height, defaultState);  //necessaire?
 
     //ajustement des couleurs de bordures
     for (size_t i{}; i < mGrid.getSize(); i++) {
@@ -192,12 +185,15 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
             }
         }
     }
-    resetStats();
-    mIteration = 0;
-
+    
+    mStats.iteration = mIteration = 0;
     mStats.height = mGrid.getHeight();
     mStats.width = mGrid.getWidth();
     mStats.totalCells = mGrid.getSize();
+    setStats();
+
+    //setTotalRel();
+
 }
 
 bool GOLTeamK::setRule(std::string const& rule)
@@ -238,7 +234,29 @@ bool GOLTeamK::setRule(std::string const& rule)
 void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 {
     mStats.borderManagement = mBorderManagement = borderManagement;
+
+    if (mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive) {
+        resetStats();
+
+        for (size_t i{}; i < mGrid.getSize(); i++) {
+
+            size_t column = i % mGrid.getWidth();
+            size_t row = i / mGrid.getWidth();
+
+            if (onBorder(row, column)) {
+
+                if (mBorderManagement == BorderManagement::foreverDead) {           //si foreverDead, alors cellule morte
+                    setState(column, row, State::dead);
+                }
+                else if (mBorderManagement == BorderManagement::foreverAlive) {     //si foreverAlive, alors cellule vivante
+                    setState(column, row, State::alive);
+                }
+            }
+        }
+        setStats();
+    }
     mStats.iteration = mIteration = 0;
+    
 }
 
 void GOLTeamK::setState(int x, int y, State state)
@@ -246,7 +264,7 @@ void GOLTeamK::setState(int x, int y, State state)
     mGrid.setValue(x, y, state); //ne valide pas ses entrees
     //grid.setAt(x, y, state);  //valide ses entrees
 
-    setStats(state);
+    //setStats(state);
 }
 
 void GOLTeamK::fill(State state)
@@ -265,9 +283,10 @@ void GOLTeamK::fill(State state)
         else {
             setState(column, row, state);
         }
-
     }
-    mIteration = 0;
+    mStats.iteration = mIteration = 0;
+    setStats();
+    //setTotalRel();
 }
 
 void GOLTeamK::fillAlternately(State firstCell)
@@ -289,7 +308,9 @@ void GOLTeamK::fillAlternately(State firstCell)
             setState(column, row, cellstate);
         }
     }
-    mIteration = 0;
+    mStats.iteration = mIteration = 0;
+    setStats();
+    //setTotalRel();
 }
 
 void GOLTeamK::randomize(double percentAlive)
@@ -300,10 +321,9 @@ void GOLTeamK::randomize(double percentAlive)
 
     for (size_t i{}; i < mGrid.getSize(); i++) {
 
+        State cellstate = prob(gen) ? State::alive : State::dead;
         size_t column = i % mGrid.getWidth();
         size_t row = i / mGrid.getWidth();
-
-        State cellstate = prob(gen) ? State::alive : State::dead;
 
         if (onBorder(row, column) && ignoreBorder()) {
             fillBorder(row, column, cellstate);
@@ -312,7 +332,9 @@ void GOLTeamK::randomize(double percentAlive)
             setState(column, row, cellstate);
         }
     }
-    mIteration = 0;
+    mStats.iteration = mIteration = 0;
+    setStats();
+    //setTotalRel();
 }
 
 bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int centerY)
@@ -351,6 +373,7 @@ void GOLTeamK::processOneStep()
         int row = i / width;
         bool onBorder = row == 0 || row == height - 1 || column == 0 || column == width - 1;
 
+
         if (ignoreBorder && onBorder) {
             setState(column, row, *pastGrid);
         }
@@ -371,6 +394,9 @@ void GOLTeamK::processOneStep()
         ++pastGrid;
     }
     mStats.iteration = ++mIteration;
+
+
+
 
 
 

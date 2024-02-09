@@ -55,8 +55,6 @@ public:
 
 	State getOppositeState(State state);															//fonction qui retourne un etat oppose
 	void setInformation();																			//fonction pour les informations du projet
-	void setStats(State state);
-	void resetStats();
 
 
 	bool onBorder(size_t row, size_t column);														//fonction qui verifie si nous sommes sur une bordure
@@ -64,7 +62,8 @@ public:
 	void fillBorder(size_t row, size_t column, State state);
 
 
-
+	void resetStats();
+	void setStats();
 
 
 private:
