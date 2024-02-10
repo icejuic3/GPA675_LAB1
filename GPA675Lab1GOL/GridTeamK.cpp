@@ -19,17 +19,6 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 
 		*cur = initValue;
 	}
-
-
-	//for (size_t row{}; row < height; row++) {
-
-	//	mGrid[row] = new CellType [width];	//initialisation du pointeur de colonne
-
-	//	for (size_t column{}; column < width; column++) {
-
-	//		mGrid[row][column] = initValue;
-	//	}
-	//}
 }
 
 GridTeamK& GridTeamK::operator=(GridTeamK const&)
@@ -77,17 +66,6 @@ void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 
 		*cur = initValue;
 	}
-
-
-	//for (size_t row{}; row < height; row++) {
-
-	//	mGrid[row] = new CellType[width];
-
-	//	for (size_t column{}; column < width; column++) {
-
-	//		mGrid[row][column] = initValue;
-	//	}
-	//}
 }
 
 CellType GridTeamK::value(int column, int row) const
@@ -101,7 +79,6 @@ CellType GridTeamK::value(int column, int row) const
 void GridTeamK::setValue(int column, int row, CellType value)
 {
 	mGrid[row * mWidth + (column)] = value;
-
 
 	//mGrid[row][column] = value;
 }
@@ -123,11 +100,11 @@ void GridTeamK::setAt(int column, int row, CellType value)
 
 DataType const& GridTeamK::data() const
 {
-	return mGrid; //a changer
+	return mGrid;
 }
 
 DataType& GridTeamK::data()
 {
-	return mGrid; //a changer
+	return mGrid;
 }
 

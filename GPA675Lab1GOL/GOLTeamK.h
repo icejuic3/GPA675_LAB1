@@ -62,8 +62,10 @@ public:
 	void fillBorder(size_t row, size_t column, State state);
 
 
+	void tendencyCal();
 	void resetStats();
-	void setStats();
+	void setStats(State state);
+	void relStats();
 
 
 private:
@@ -81,5 +83,7 @@ private:
 	Statistics mStats;
 	ImplementationInformation mInfo;
 	IterationType mIteration;
+
+	Statistics mNewStats;
 };
 

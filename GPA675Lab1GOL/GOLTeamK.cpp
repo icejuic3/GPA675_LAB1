@@ -1,6 +1,7 @@
 #include "GOLTeamK.h"
 
 GOLTeamK::GOLTeamK()
+
 {
     setInformation();
     //setStats();
@@ -18,9 +19,9 @@ GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
     , mBornRule{}
     , mSurviveRule{}
     , mRule{}
+    ,mNewStats{}
 {
     setInformation();
-  //  setStats();
 }
 
 GOLTeamK::~GOLTeamK()
@@ -35,31 +36,28 @@ void GOLTeamK::setInformation()
     mInfo.optionnalComments = {};
 }
 
-void GOLTeamK::setStats()
+void GOLTeamK::setStats(State state)
 {
+    if (state == State::alive) {
 
-    for (size_t i{}; i < mGrid.getSize(); i++) {
-
-        size_t column = i % mGrid.getWidth();
-        size_t row = i / mGrid.getWidth();
-
-        if (mGrid.value(column,row) == State::alive) {
-
-            (*mStats.totalAliveAbs)++;
-        }
-        else if (mGrid.value(column, row) == State::dead) {
-
-            (*mStats.totalDeadAbs)++;
-        } 
+        (*mStats.totalAliveAbs)++;
     }
+    else if (state == State::dead) {
 
+        (*mStats.totalDeadAbs)++;
+    }
+}
+
+void GOLTeamK::relStats()
+{
     mStats.totalAliveRel = static_cast<float>(*mStats.totalAliveAbs) / (*mStats.totalCells);
     mStats.totalDeadRel = static_cast<float>(*mStats.totalDeadAbs) / (*mStats.totalCells);
-    
+}
 
-    /*******************/
-    mStats.tendencyAbs;
-    mStats.tendencyRel;
+void GOLTeamK::tendencyCal()
+{
+    mStats.tendencyAbs = (static_cast<int>(*mNewStats.totalAliveAbs) - static_cast<int>(*mStats.totalAliveAbs)) - (static_cast<int>(*mNewStats.totalDeadAbs) - static_cast<int>(*mStats.totalDeadAbs));
+    mStats.tendencyRel = static_cast<float>(*mStats.tendencyAbs) / (*mStats.totalCells);
 }
 
 void GOLTeamK::resetStats()
@@ -70,6 +68,15 @@ void GOLTeamK::resetStats()
     mStats.totalDeadAbs = 0;
     mStats.totalAliveRel = 0;
     mStats.totalDeadRel = 0;
+
+    mNewStats.tendencyAbs = 0;
+    mNewStats.tendencyRel = 0;
+    mNewStats.totalAliveAbs = 0;
+    mNewStats.totalDeadAbs = 0;
+    mNewStats.totalAliveRel = 0;
+    mNewStats.totalDeadRel = 0;
+
+
 }
 
 bool GOLTeamK::onBorder(size_t row, size_t column)
@@ -167,7 +174,12 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
     }
 
     mGrid.resize(width, height, defaultState);
-    mPastGrid.resize(width, height, defaultState);  //necessaire?
+    mPastGrid.resize(width, height, defaultState);  
+
+    mStats.iteration = mIteration = 0;
+    mStats.height = mGrid.getHeight();
+    mStats.width = mGrid.getWidth();
+    mStats.totalCells = mGrid.getSize();
 
     //ajustement des couleurs de bordures
     for (size_t i{}; i < mGrid.getSize(); i++) {
@@ -177,23 +189,13 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
 
         if (onBorder(row, column) && ignoreBorder()) {
 
-            if (mBorderManagement == BorderManagement::foreverDead) {           //si foreverDead, alors cellule morte
-                setState(column, row, State::dead);
-            }
-            else if (mBorderManagement == BorderManagement::foreverAlive) {     //si foreverAlive, alors cellule vivante
-                setState(column, row, State::alive);
-            }
+            fillBorder(row, column, mGrid.value(column, row));
+        }
+        else {
+            setStats(defaultState);
         }
     }
-    
-    mStats.iteration = mIteration = 0;
-    mStats.height = mGrid.getHeight();
-    mStats.width = mGrid.getWidth();
-    mStats.totalCells = mGrid.getSize();
-    setStats();
-
-    //setTotalRel();
-
+    relStats();
 }
 
 bool GOLTeamK::setRule(std::string const& rule)
@@ -235,7 +237,7 @@ void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 {
     mStats.borderManagement = mBorderManagement = borderManagement;
 
-    if (mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive) {
+    if (ignoreBorder()) {   //verifie si le remplissage de bordure est necessaire
         resetStats();
 
         for (size_t i{}; i < mGrid.getSize(); i++) {
@@ -245,18 +247,15 @@ void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 
             if (onBorder(row, column)) {
 
-                if (mBorderManagement == BorderManagement::foreverDead) {           //si foreverDead, alors cellule morte
-                    setState(column, row, State::dead);
-                }
-                else if (mBorderManagement == BorderManagement::foreverAlive) {     //si foreverAlive, alors cellule vivante
-                    setState(column, row, State::alive);
-                }
+                fillBorder(row, column, mGrid.value(column, row));
+            }
+            else {
+                setStats(mGrid.value(column, row));
             }
         }
-        setStats();
     }
-    mStats.iteration = mIteration = 0;
-    
+    relStats();
+    mStats.iteration = mIteration = 0;  
 }
 
 void GOLTeamK::setState(int x, int y, State state)
@@ -264,7 +263,7 @@ void GOLTeamK::setState(int x, int y, State state)
     mGrid.setValue(x, y, state); //ne valide pas ses entrees
     //grid.setAt(x, y, state);  //valide ses entrees
 
-    //setStats(state);
+    setStats(state);
 }
 
 void GOLTeamK::fill(State state)
@@ -284,9 +283,8 @@ void GOLTeamK::fill(State state)
             setState(column, row, state);
         }
     }
+    relStats();
     mStats.iteration = mIteration = 0;
-    setStats();
-    //setTotalRel();
 }
 
 void GOLTeamK::fillAlternately(State firstCell)
@@ -308,9 +306,8 @@ void GOLTeamK::fillAlternately(State firstCell)
             setState(column, row, cellstate);
         }
     }
+    relStats();
     mStats.iteration = mIteration = 0;
-    setStats();
-    //setTotalRel();
 }
 
 void GOLTeamK::randomize(double percentAlive)
@@ -332,9 +329,8 @@ void GOLTeamK::randomize(double percentAlive)
             setState(column, row, cellstate);
         }
     }
+    relStats();
     mStats.iteration = mIteration = 0;
-    setStats();
-    //setTotalRel();
 }
 
 bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int centerY)
@@ -359,46 +355,79 @@ void GOLTeamK::setSolidColor(State state, Color const& color)
 
 void GOLTeamK::processOneStep()
 {
+
     const size_t width = mGrid.getWidth();
     const size_t height = mGrid.getHeight();
     const size_t size = mGrid.getSize();
     const bool ignoreBorder = mBorderManagement == BorderManagement::immutableAsIs || mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive;
     copyGrid();
-
-
+    resetStats();
     State* pastGrid{ mPastGrid.data() };
+
+    /*************************************************************************************************************************/
 
     for (size_t i{}; i < size; ++i) {
         int column = i % width;
         int row = i / width;
         bool onBorder = row == 0 || row == height - 1 || column == 0 || column == width - 1;
 
-
         if (ignoreBorder && onBorder) {
-            setState(column, row, *pastGrid);
+
+            //setState(column, row, *pastGrid);
+            fillBorder(row,column,*pastGrid);
+
+            if (mGrid.value(column,row) == State::alive) {  //verifie la ouvelle valeur de la grille
+                (*mNewStats.totalAliveAbs)++;
+            }
+            else {
+                (*mNewStats.totalDeadAbs)++;
+            }
         }
         else {
-            int alive = getAliveAround(column, row, onBorder, pastGrid);
 
-            if (mGrid.value(column, row) == State::alive) {
-                if (!mSurviveRule[alive]) {
-                    setState(column, row, State::dead);
+            int alive = getAliveAround(column, row, onBorder, pastGrid); //retourne le nombre de cellules vivantes sur la cellule avant modification de la grille
+
+            if (mGrid.value(column, row) == State::alive) { //verifie la valeur presente, si la cellule est vivante
+
+                (*mStats.totalAliveAbs)++;                
+
+                if (!mSurviveRule[alive]) { //si le nombre vivant autour de la cellule ne respecte pas la regle de survie
+                    //setState(column, row, State::dead);   //on n'utilise pas la fonction setState car elle modifie les statistiques de l'ancienne grille
+                    mGrid.setValue(column, row, State::dead); 
+                    (*mNewStats.totalDeadAbs)++;
+                }
+                else {
+                    (*mNewStats.totalAliveAbs)++;
                 }
             }
             else {
+                (*mStats.totalDeadAbs)++;
+
                 if (mBornRule[alive]) {
-                    setState(column, row, State::alive);
+                
+                    mGrid.setValue(column, row, State::alive);
+                    (*mNewStats.totalAliveAbs)++;
+                }   
+                else {
+                    (*mNewStats.totalDeadAbs)++;
                 }
             }
         }
         ++pastGrid;
     }
     mStats.iteration = ++mIteration;
+    tendencyCal();  //a faire avant de swap les stats
 
+    //petit bug, j'ai remarqué qu'on retourné les stats de l'ancienne grille donc apres un onestep les stats ne faisait pas de sense
+    //pour l'instant les deux prochaines lignes regles le problemes donc on peut laisser ca de meme pour l'instant
+    mStats.totalAliveAbs = mNewStats.totalAliveAbs;
+    mStats.totalDeadAbs = mNewStats.totalDeadAbs;
 
+    relStats();
 
+    
 
-
+    /************************************************************************************************************************************************************************/
 
     /*   const bool ignoreBorder = mBorderManagement == BorderManagement::immutableAsIs || mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive;
        int iter{};
@@ -466,6 +495,7 @@ int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid
     int width = mGrid.getWidth();
     int height = mGrid.getHeight();
 
+    //Des pointeurs de State qui pointent autour de la cellule
     State* topLeft = pastGrid - width - 1;
     State* top = pastGrid - width;
     State* topRight = pastGrid - width + 1;
@@ -620,7 +650,7 @@ int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid
             ++aliveCells;
         }
 
-        return aliveCells;
+        return aliveCells;  //retourne le nombre de cellules vivantes
     }
 
 
