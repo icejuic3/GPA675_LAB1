@@ -75,8 +75,6 @@ void GOLTeamK::resetStats()
     mNewStats.totalDeadAbs = 0;
     mNewStats.totalAliveRel = 0;
     mNewStats.totalDeadRel = 0;
-
-
 }
 
 bool GOLTeamK::onBorder(size_t row, size_t column)
@@ -233,6 +231,57 @@ bool GOLTeamK::setRule(std::string const& rule)
     }
 }
 
+bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int centerY)
+{
+    //fontion pour implementer le pattern
+    const std::regex mPattern{ "^\\[([0-9]+)x([0-9]+)\\]([01]+)$" ,std::regex_constants::icase };
+    std::smatch matches;
+
+    if (std::regex_match(pattern, matches, mPattern)) {
+
+        int width = std::stoi(matches[1]);
+        int height = std::stoi(matches[2]);
+        int size = width * height;
+        std::string cellStates = matches[3];
+        resetStats();
+        
+        for (int index = 0; index < size; ++index) {
+    
+            // Convertir l'index linéaire en coordonnées x, y
+            int x = index % width;
+            int y = index / width;
+
+            // Calculer la position réelle de la cellule dans la grille
+            int realX = centerX - width / 2 + x;
+            int realY = centerY - height / 2 + y;
+
+            if (realX >= 0 && realX < mGrid.getWidth() && realY >= 0 && realY < mGrid.getHeight()) {
+
+                // Obtenir l'état de la cellule (vivant ou mort)
+                if (cellStates[index] == '1') {
+
+                    setState(realX, realY, State::alive);
+                }
+                else
+                    setState(realX, realY, State::dead);
+            }
+        }
+        relStats();
+        mStats.iteration = mIteration = 0;
+        return true;
+    }
+    else
+        return false;
+}
+
+bool GOLTeamK::setFromPattern(std::string const& pattern)
+{
+    int centerX = mGrid.getWidth() / 2;
+    int centerY = mGrid.getHeight() / 2;
+
+    return setFromPattern(pattern,centerX,centerY);
+}
+
 void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 {
     mStats.borderManagement = mBorderManagement = borderManagement;
@@ -240,7 +289,7 @@ void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
     if (ignoreBorder()) {   //verifie si le remplissage de bordure est necessaire
         resetStats();
 
-        for (size_t i{}; i < mGrid.getSize(); i++) {
+        for (size_t i{}; i < mGrid.getSize(); ++i) {
 
             size_t column = i % mGrid.getWidth();
             size_t row = i / mGrid.getWidth();
@@ -270,7 +319,7 @@ void GOLTeamK::fill(State state)
 {
     resetStats();                                           //les stats sont remis à zéro
 
-    for (size_t i{}; i < mGrid.getSize(); i++) {
+    for (size_t i{}; i < mGrid.getSize(); ++i) {
 
         size_t column = i % mGrid.getWidth();
         size_t row = i / mGrid.getWidth();
@@ -292,7 +341,7 @@ void GOLTeamK::fillAlternately(State firstCell)
     resetStats();
     State oppositeState = getOppositeState(firstCell);
 
-    for (size_t i{}; i < mGrid.getSize(); i++) {
+    for (size_t i{}; i < mGrid.getSize(); ++i) {
 
         size_t column = i % mGrid.getWidth();
         size_t row = i / mGrid.getWidth();
@@ -316,7 +365,7 @@ void GOLTeamK::randomize(double percentAlive)
     std::mt19937 gen(std::random_device{}());               //generateur aleatoire
     std::bernoulli_distribution prob(percentAlive);         //creation d'une instance qui recoit en parametre la probabilite qu'elle retourne True
 
-    for (size_t i{}; i < mGrid.getSize(); i++) {
+    for (size_t i{}; i < mGrid.getSize(); ++i) {
 
         State cellstate = prob(gen) ? State::alive : State::dead;
         size_t column = i % mGrid.getWidth();
@@ -331,16 +380,6 @@ void GOLTeamK::randomize(double percentAlive)
     }
     relStats();
     mStats.iteration = mIteration = 0;
-}
-
-bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int centerY)
-{
-    return false;
-}
-
-bool GOLTeamK::setFromPattern(std::string const& pattern)
-{
-    return false;
 }
 
 void GOLTeamK::setSolidColor(State state, Color const& color)

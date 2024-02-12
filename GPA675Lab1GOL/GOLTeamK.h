@@ -33,12 +33,12 @@ public:
 	std::string rule() const override;																//done
 	BorderManagement borderManagement() const override;												//done
 	Color color(State state) const override;														//done
-	Statistics statistics() const override;															//a faire
+	Statistics statistics() const override;															//done
 	ImplementationInformation information() const override;											//done
 
 	void resize(size_t width, size_t height, State defaultState) override;							//done
-	bool setRule(std::string const& rule) override;													//a verifier
-	void setBorderManagement(BorderManagement borderManagement) override;							//a verifier
+	bool setRule(std::string const& rule) override;													//done
+	void setBorderManagement(BorderManagement borderManagement) override;							//done
 	void setState(int x, int y, State state) override;												//done
 	void fill(State state) override;																//done
 	void fillAlternately(State firstCell) override;													//done
@@ -46,8 +46,8 @@ public:
 	bool setFromPattern(std::string const& pattern, int centerX, int centerY) override;				//a faire
 	bool setFromPattern(std::string const& pattern) override;										//a faire
 	void setSolidColor(State state, Color const& color) override;									//done		fonction pour definir la couleur
-	void processOneStep() override;																	//a faire
-	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//a verifier
+	void processOneStep() override;																	//done ---> faire warping et mirror
+	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//done
 	//void browseHandling(GridTeamK& grid, void(*task)(State &));
 	int getAliveAround(int column, int row, bool onBorder, State* pastGrid);
 	void copyGrid();
@@ -81,9 +81,9 @@ private:
 	Color mDeadColor;	// une struct contenant trois channel de couleur (uint8_t) pour les cellules mortes
 
 	Statistics mStats;
+	Statistics mNewStats;
 	ImplementationInformation mInfo;
 	IterationType mIteration;
 
-	Statistics mNewStats;
 };
 
