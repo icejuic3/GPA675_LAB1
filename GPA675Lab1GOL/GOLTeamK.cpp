@@ -31,7 +31,7 @@ GOLTeamK::~GOLTeamK()
 void GOLTeamK::setInformation()
 {
     mInfo.title = "Game of life Team K";
-    mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, };
+    mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, {"David-Way","William","william.david-way.1@ens.etsmtl.ca"}};
     mInfo.answers = {};
     mInfo.optionnalComments = {};
 }
@@ -130,7 +130,6 @@ size_t GOLTeamK::size() const
 GOL::State GOLTeamK::state(int x, int y) const
 {
     return mGrid.value(x, y);       //ne valide pas ses entrees
-    //return grid.at(x, y);           //valide ses entrees
 }
 
 std::string GOLTeamK::rule() const
@@ -315,8 +314,6 @@ void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 void GOLTeamK::setState(int x, int y, State state)
 {
     mGrid.setValue(x, y, state); //ne valide pas ses entrees
-    //grid.setAt(x, y, state);  //valide ses entrees
-
     setStats(state);
 }
 
@@ -408,8 +405,6 @@ void GOLTeamK::processOneStep()
     resetStats();
     State* pastGrid{ mPastGrid.data() };
 
-    /*************************************************************************************************************************/
-
     for (size_t i{}; i < size; ++i) {
         int column = i % width;
         int row = i / width;
@@ -468,59 +463,13 @@ void GOLTeamK::processOneStep()
     mStats.totalDeadAbs = mNewStats.totalDeadAbs;
 
     relStats();
-
-    
-
-    /************************************************************************************************************************************************************************/
-
-    /*   const bool ignoreBorder = mBorderManagement == BorderManagement::immutableAsIs || mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive;
-       int iter{};
-       int end{};
-
-       if (ignoreBorder) {
-           iter = width + 1;
-           end = size - width - 1;
-       }
-       else {
-           iter = 0;
-           end = size;
-       }
-
-       while (iter < end) {
-           int column = iter / width;
-           int row = iter % width;
-
-           int alive = getAliveAround(row, column, ignoreBorder);
-
-           if (mGrid.value(column, row) == State::alive) {
-               if (!mSurviveRule[alive]) {
-                   futureGrid.setAt(column, row, State::dead);
-               }
-           }
-           else {
-               if (mBornRule[alive]) {
-                   futureGrid.setAt(column, row, State::alive);
-               }
-           }
-
-           if (ignoreBorder && iter % width == width - 1) {
-               iter += 3;
-           }
-           else {
-               ++iter;
-           }
-       }*/
 }
 
 void GOLTeamK::updateImage(uint32_t* buffer, size_t buffer_size) const
 {
     size_t x{}; //index pour parcourir le buffer
     DataType myGrid{ mGrid.data() }; //myGrid est de type Celltype*
-    //* cur{};
-    // uint8_t end {(static_cast<uint8_t> (*myGrid))+buffer_size};
-
-
-
+  
     while (x < buffer_size) {
 
         Color cellColor = (*myGrid == State::alive) ? mAliveColor : mDeadColor;
@@ -559,116 +508,159 @@ int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid
                 aliveCells += 2;
             }
             if (*bottomRight == State::alive) {
+                aliveCells += 4;
+            }
+        }
+        else if (row == 0 && column == width - 1) {
+            if (*left == State::alive) {
+                aliveCells += 2;
+            }
+            if (*bottomLeft == State::alive) {
+                aliveCells += 4;
+            }
+            if (*bottom == State::alive) {
                 aliveCells += 2;
             }
         }
-        else if (row == 0 && column == height - 1) {
+        else if (column == 0 && row == height - 1) {
             if (*right == State::alive) {
+                aliveCells += 2;
+            }
+            if (*topRight == State::alive) {
+                aliveCells += 4;
+            }
+            if (*top == State::alive) {
+                aliveCells += 2;
+            }
+        }
+        else if (row == height - 1 && column == width - 1) {
+            if (*left == State::alive) {
                 aliveCells += 2;
             }
             if (*top == State::alive) {
                 aliveCells += 2;
             }
-            if (*topRight == State::alive) {
-                aliveCells += 2;
+            if (*topLeft == State::alive) {
+                aliveCells += 4;
             }
         }
         else if (row == 0) {
-            if (*top == State::alive) {
+            if (*left == State::alive) {
                 ++aliveCells;
             }
-            if (*topRight == State::alive) {
-                aliveCells += 2;
-            }
             if (*right == State::alive) {
+                ++aliveCells;
+            }
+            if (*bottomLeft == State::alive) {
                 aliveCells += 2;
             }
             if (*bottom == State::alive) {
-                ++aliveCells;
+                aliveCells += 2;
             }
             if (*bottomRight == State::alive) {
                 aliveCells += 2;
             }
 
         }
-        else if (row == width - 1 && column == 0) {
-            if (*left == State::alive) {
-                aliveCells += 2;
+        else if (column == 0) {
+            if (*topRight == State::alive) {
+                aliveCells+=2;
+            }
+            if (*right == State::alive) {
+                aliveCells+=2;
+            }
+            if (*bottomRight == State::alive) {
+                aliveCells+=2;
+            }
+            if (*top == State::alive) {
+                ++aliveCells;
             }
             if (*bottom == State::alive) {
+                ++aliveCells;
+            }
+        }
+        else if (row == height - 1) {
+            if (*top == State::alive) {
+                aliveCells+=2;
+            }
+            if (*topLeft == State::alive) {
+                aliveCells+=2;
+            }
+            if (*topRight == State::alive) {
+                aliveCells+=2;
+            }
+            if (*left == State::alive) {
+                ++aliveCells;
+            }
+            if (*right == State::alive) {
+                ++aliveCells;
+            }
+        }
+        else if (column == width-1) {
+            if (*topLeft == State::alive) {
+                aliveCells += 2;
+            }
+            if (*left == State::alive) {
                 aliveCells += 2;
             }
             if (*bottomLeft == State::alive) {
                 aliveCells += 2;
             }
-        }
-        else if (row == width - 1 && column == height - 1) {
-            if (*left == State::alive) {
-                aliveCells += 2;
-            }
-            if (*top == State::alive) {
-                aliveCells += 2;
-            }
-            if (*topLeft == State::alive) {
-                aliveCells += 2;
-            }
-        }
-        else if (row == width - 1) {
             if (*top == State::alive) {
                 ++aliveCells;
-            }
-            if (*topLeft == State::alive) {
-                aliveCells += 2;
-            }
-            if (*left == State::alive) {
-                aliveCells += 2;
             }
             if (*bottom == State::alive) {
                 ++aliveCells;
             }
-            if (*bottomLeft == State::alive) {
-                aliveCells += 2;
-            }
-
-        }
-    }
-    else if (mBorderManagement == BorderManagement::warping && onBorder) {
-        if (row == 0 && column == 0) {
-            topLeft = pastGrid + (width * height - 1);
-            top = pastGrid + (height * (width - 1));
-            topRight = pastGrid + (height * (width - 1) + 1);
-            left = pastGrid + width - 1;
-            bottomLeft = pastGrid + (2 * width - 1);
-        }
-        else if (row == 0 && column == height - 1) {
-            topLeft = pastGrid - 1;
-            left = pastGrid + width - 1;
-            bottomLeft = pastGrid - (width * (height - 2) - 1);
-            bottom = pastGrid - (width * (height - 1));
-            bottomRight = pastGrid - (width * (height - 1) + 1);
-        }
-        else if (row == 0) {
-            topLeft = pastGrid + (2 * width) - 1;                     //Equivalent de bottomLeft (Left->topLeft, bottomLeft->Left) 
-        }
-        else if (row == width - 1 && column == 0) {
-            topLeft = pastGrid + (width * (height - 1) - 1);
-            top = pastGrid + (width * (height - 1));
-            topRight = pastGrid + (width * (height - 2) + 1);
-            right = pastGrid - width + 1;
-            bottomRight = pastGrid + 1;
-        }
-        else if (row == width - 1 && column == height - 1) {
-            topRight = pastGrid - (width * (height - 2)) + 1;
-            right = pastGrid - width + 1;
-            bottomLeft = pastGrid - (width * height) + 1;
-            bottom = pastGrid - (width * (height - 1));
-            bottomRight = pastGrid - (width * (height - 1)) - 1;
-        }
-        else if (row == width - 1) {
-            bottomRight = pastGrid - (2 * width) + 1;                 //Equivalent de topRight (Right->bottomRight, bottomRight->Right)
         }
     }
     else {
+        if (mBorderManagement == BorderManagement::warping && onBorder) {
+            if (row == 0 && column == 0) {
+                topLeft = pastGrid + width * height - 1;
+                top = pastGrid + width * (height - 1);
+                topRight = pastGrid + width * (height - 1) + 1;
+                left = pastGrid + width - 1;
+                bottomLeft = pastGrid + 2 * width - 1;
+            }
+            else if (row == 0 && column == width - 1) {
+                topLeft = pastGrid + width * (height - 1) - 1;
+                top = pastGrid + width * (height - 1);
+                topRight = pastGrid + width * (height - 2) + 1;
+                right = pastGrid - (width - 1);
+                bottomRight = pastGrid + 1;
+            }
+            else if (column == 0 && row == height - 1) {
+                //topLeft = oldLeft;
+                topLeft = pastGrid + width - 1;        //newLeft
+                bottomLeft = pastGrid - width * (height - 2) - 1;
+                bottom = pastGrid - width * (height - 1);
+                bottomRight = pastGrid - width * (height - 1) + 1;
+            }
+            else if (row == height - 1 && column == width - 1) {
+                topRight = pastGrid - (width * 2) + 1;
+                right = pastGrid - width + 1;
+                bottomRight = pastGrid - width * height + 1;
+                bottom = pastGrid - width * (height - 1);
+                bottomLeft = pastGrid - width * (height - 1) - 1;
+            }
+            else if (row == 0) {
+                topLeft = pastGrid + width * (height - 1) - 1;
+                top = pastGrid + width * (height - 1);
+                topRight = pastGrid + width * (height - 1) + 1;
+            }
+            else if (column == 0) {
+                topLeft = pastGrid + (2 * width) - 1;                     //Equivalent de bottomLeft (Left->topLeft, bottomLeft->Left) 
+            }
+            else if (column == width - 1) {
+                bottomRight = pastGrid - (2 * width) + 1;                 //Equivalent de topRight (Right->bottomRight, topRight->Right)
+            }
+            else if (row == height - 1) {
+                bottomLeft = pastGrid - width * (height - 1) - 1;
+                bottom = pastGrid - width * (height - 1);
+                bottomRight = pastGrid - width * (height - 1) + 1;
+            }
+        }
         if (*topLeft == State::alive) {
             ++aliveCells;
         }
@@ -693,23 +685,9 @@ int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid
         if (*bottomRight == State::alive) {
             ++aliveCells;
         }
-
-        return aliveCells;  //retourne le nombre de cellules vivantes
     }
 
-
-    //size_t x{};
-    //DataType myGrid = grid.data();
-
-    //for (size_t row{}; row < grid.getHeight(); ++row) {
-
-    //    for (size_t column{}; column < grid.getWidth(); ++column) {
-
-    //        Color cellColor = (myGrid[row][column] == State::alive) ? mAliveColor : mDeadColor;
-    //        buffer[x] = (0xff << 24) | (cellColor.red << 16) | (cellColor.green << 8) | cellColor.blue;
-    //        x++;
-    //    }
-    //}
+    return aliveCells; //retourne le nombre de cellules vivantes
 }
 
 void GOLTeamK::copyGrid()
@@ -725,27 +703,6 @@ void GOLTeamK::copyGrid()
         mPastGrid.setValue(column,row, *(grid + i));
     }
 }
-
-//void GOLTeamK::browseHandling(GridTeamK& grid, void(*task)(State &))
-//{
-//    if (mBorderManagement == BorderManagement::immutableAsIs || mBorderManagement == BorderManagement::foreverDead || mBorderManagement == BorderManagement::foreverAlive) {
-//        for (size_t row{}; row < grid.getHeight(); row++) {
-//
-//            for (size_t column{}; column < grid.getWidth(); column++) {
-//
-//                setState(column, row,State &);
-//            }
-//        }
-//    }
-//
-//    if (mBorderManagement == BorderManagement::mirror) {
-//
-//    }
-//
-//    if (mBorderManagement == BorderManagement::warping) {
-//
-//    }
-//}
 
 GOL::State GOLTeamK::getOppositeState(State state)
 {

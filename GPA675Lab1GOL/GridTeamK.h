@@ -1,9 +1,9 @@
 #pragma once
 #include "GOL.h"
 
-// Définition des types														//
-using CellType = GOL::State;											// Correspond au type fondamental de chaque cellule de la grille. 
-using DataType = CellType*;												// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
+// Définition des types															//
+using CellType = GOL::State;													// Correspond au type fondamental de chaque cellule de la grille. 
+using DataType = CellType*;														// Correspond à la grille, au conteneur de cellules. Nous n'utilisons pas de vecteur puisque la memoire doit etre gerer manuellement
 using namespace std;
 
 
@@ -16,16 +16,16 @@ public:																			//
 	GridTeamK(size_t width, size_t height, CellType initValue = CellType{});
 	GridTeamK(GridTeamK const&) = delete;										// 
 	GridTeamK(GridTeamK&&) = delete;											// 
-	GridTeamK& operator=(GridTeamK const&);							// 
+	GridTeamK& operator=(GridTeamK const&);										// 
 	GridTeamK& operator=(GridTeamK&&) = delete;									// 
 	~GridTeamK();														    	// 
 
 	//fonction qui detruit le tableau
 	void gridDelete();
 	
-	// Accesseurs et mutateurs de la grille										// 
-	size_t getWidth() const;														// Accesseur retournant la largeur de la grille.
-	size_t getHeight() const;														// Accesseur retournant la hauteur de la grille.
+	// Accesseurs et mutateurs de la grille										//
+	size_t getWidth() const;													// Accesseur retournant la largeur de la grille.
+	size_t getHeight() const;													// Accesseur retournant la hauteur de la grille.
 	size_t getSize() const;														// Accesseur retournant le nombre de cellule de la grille.
 	 
 	void resize(size_t width, size_t height, CellType initValue = CellType{});	// Mutateur modifiant la taille de la grille et initialise le contenu par la valeur spécifiée.
@@ -42,7 +42,7 @@ public:																			//
 	DataType& data();															// Accesseur en lecture/écriture sur le "buffer" de la grille.
 	
 private:																		// 
-	DataType mGrid;																//pointeur de pointeur
+	DataType mGrid;																// pointeur de pointeur
 	size_t mWidth;											    				// Il y a des attributs essentiels au fonctionnement de cette classe.
 	size_t mHeight;
 	size_t mSize;

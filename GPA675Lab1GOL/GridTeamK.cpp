@@ -14,9 +14,7 @@ GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
 	,mSize{ width * height }
 	,mGrid{ new CellType  [mSize]}		//initialisation du pointeur de ligne
 {
-
 	for (DataType cur{mGrid}; cur < mGrid + mSize; ++cur) {
-
 		*cur = initValue;
 	}
 }
@@ -70,17 +68,12 @@ void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 
 CellType GridTeamK::value(int column, int row) const
 {
-
 	return mGrid[row * mWidth + (column)];
-
-	//return mGrid[row][column];
 }
 
 void GridTeamK::setValue(int column, int row, CellType value)
 {
 	mGrid[row * mWidth + (column)] = value;
-
-	//mGrid[row][column] = value;
 }
 
 optional<CellType> GridTeamK::at(int column, int row) const

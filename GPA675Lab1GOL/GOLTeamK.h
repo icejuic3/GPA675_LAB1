@@ -43,23 +43,21 @@ public:
 	void fill(State state) override;																//done
 	void fillAlternately(State firstCell) override;													//done
 	void randomize(double percentAlive) override;													//done
-	bool setFromPattern(std::string const& pattern, int centerX, int centerY) override;				//a faire
-	bool setFromPattern(std::string const& pattern) override;										//a faire
+	bool setFromPattern(std::string const& pattern, int centerX, int centerY) override;				//done
+	bool setFromPattern(std::string const& pattern) override;										//done
 	void setSolidColor(State state, Color const& color) override;									//done		fonction pour definir la couleur
-	void processOneStep() override;																	//done ---> faire warping et mirror
+	void processOneStep() override;																	//done 
 	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//done
-	//void browseHandling(GridTeamK& grid, void(*task)(State &));
-	int getAliveAround(int column, int row, bool onBorder, State* pastGrid);
-	void copyGrid();
-
-
+	
+	int getAliveAround(int column, int row, bool onBorder, State* pastGrid);						//fonction qui compte le nombre de cellules vivantes autour d'une position dans la grille
+	void copyGrid();																				//fonction qui copy l'etat actuel de la grille dans mPastGrid
 	State getOppositeState(State state);															//fonction qui retourne un etat oppose
 	void setInformation();																			//fonction pour les informations du projet
 
 
 	bool onBorder(size_t row, size_t column);														//fonction qui verifie si nous sommes sur une bordure
 	bool ignoreBorder();																			//fonction qui verifie les bordures non modifiables
-	void fillBorder(size_t row, size_t column, State state);
+	void fillBorder(size_t row, size_t column, State state);										//fonction qui remplie cases de bordure respectant le BorderManagement
 
 
 	void tendencyCal();
@@ -72,9 +70,9 @@ private:
 
 	GridTeamK mGrid;
 	GridTeamK mPastGrid;
-	std::string mRule;
-	bool mBornRule[9];
-	bool mSurviveRule[9];
+	std::string mRule;						//la regle de survie ou de naissance en texte
+	bool mBornRule[9];						//tableau de booleen representant le nombre de voisins a evaluer pour naitre
+	bool mSurviveRule[9];					//tableau de booleen representant le nombre de voisins a evaluer pour suvivre
 	BorderManagement mBorderManagement;
 
 	Color mAliveColor;	// une struct contenant trois channel de couleur (uint8_t) pour les cellules vivantes
