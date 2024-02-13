@@ -32,10 +32,22 @@ void GOLTeamK::setInformation()
 {
     mInfo.title = "Game of life Team K";
     mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, {"David-Way","William","william.david-way.1@ens.etsmtl.ca"}};
-    mInfo.answers = {};
+    mInfo.answers = { {" 1. Nous avons utilise un tableau a une dimension que nous gerons grace a un pointeur qui se deplace dans la memoire selon les colonne et les rangees"
+                      " determinees par l'uitilisateur. Le tableau est et le pointeur sont crees a la creation de d'un objet GridTeamK, le tableau est supprime et le pointeur mis a nullptr"
+                      " lors de l'appel du destructeur. Il en est de meme lors de la fonction resize, ou on detruit la grid actuelle et en cree une nouvelle selon les nouveles dimensions." },
+                     {"2. La fonction processOneStep commence par faire une copie des donnees de la grille actuelle dans une autre grille representant l'etat passe de celle-ci, puis parcours"
+                      " la grille au complet (sauf la bordure dans les cas ou celle-ci reste identique) en verifiant l'etat des cases qui entourent la case evaluee presentement dans la grille"
+                      " de l'etat passe, puis modifie la case evaluee dans la grille principale selon les regles de mort ou de survie. Les statistiques de la grille sont egalement mises a jour."},
+                     {"3.decrivez l’implementation algorithmique de la fonction GOL::updateImage"},
+                     {"4. Nous avons creer des variables membres de GOLTeamK sous la forme d'un tableau de 9 booleen representant la regle de naissance et la regle de survie. Lors de la lecture"
+                      " de la regle il suffisait a mettre les positions associees au nombre souhaitee par la regle a leur valeur booleennes. Puis, lors de l'execution, on utilises le nombre de"
+                      " cellules vivantes autour de la cellule evaluee comme index des tableaux pour determiner si la naissance ou la survive de cette derniere est vraie."},
+                     {"5. Pour les trois strategies qui n'evaluent pas les bords (immutableAsIs, foreverDead et foreverAlive), nous avons simplement fait le remplissage approprie des bords lors du"
+                      " remplissage de la grille, puis ignore les cellules de bordure lors de notre processOneStep. Lorsqu'on evalue que la gestion de bordure est mirror et que la cellule evaluee"
+                      " est situee sur la bordure, nous comptons seulement les cases de la grille necessaires en double. Lorsque la gestion de bordure est warping et que la cellule evaluee est sur"
+                      " la bordure, on modifie les pointeurs qui pointerait normalement a une position a l'exterieur de la grille pour qu'ils pointent a la position representant le cote oppose."}};
     mInfo.optionnalComments = {};
 }
-
 void GOLTeamK::setStats(State state)
 {
     if (state == State::alive) {
@@ -232,8 +244,6 @@ bool GOLTeamK::setRule(std::string const& rule)
 
 bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int centerY)
 {
-    
-
     //fontion pour implementer le pattern
     const std::regex mPattern{ "^\\[([0-9]+)x([0-9]+)\\]([01]+)$" ,std::regex_constants::icase };
     std::smatch matches;
@@ -245,7 +255,8 @@ bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int cente
         int size = width * height;
         std::string cellStates = matches[3];
         
-        
+        fill(State::dead);
+
         for (int index = 0; index < size; ++index) {
     
             // Convertir l'index linéaire en coordonnées x, y
@@ -411,8 +422,6 @@ void GOLTeamK::processOneStep()
         bool onBorder = row == 0 || row == height - 1 || column == 0 || column == width - 1;
 
         if (ignoreBorder && onBorder) {
-
-            //setState(column, row, *pastGrid);
             fillBorder(row,column,*pastGrid);
 
             if (mGrid.value(column,row) == State::alive) {  //verifie la nouvelle valeur de la grille
@@ -442,8 +451,7 @@ void GOLTeamK::processOneStep()
             else {
                 (*mStats.totalDeadAbs)++;
 
-                if (mBornRule[alive]) {
-                
+                if (mBornRule[alive]) {       
                     mGrid.setValue(column, row, State::alive);
                     (*mNewStats.totalAliveAbs)++;
                 }   

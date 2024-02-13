@@ -59,7 +59,6 @@ void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 	mSize = width * height;
 	mGrid = new CellType [mSize];			//initialise mGrid avec la nouvelle taille
 
-
 	for (DataType cur{ mGrid }; cur < mGrid + mSize; ++cur) {
 
 		*cur = initValue;
