@@ -233,6 +233,8 @@ bool GOLTeamK::setRule(std::string const& rule)
 
 bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int centerY)
 {
+    
+
     //fontion pour implementer le pattern
     const std::regex mPattern{ "^\\[([0-9]+)x([0-9]+)\\]([01]+)$" ,std::regex_constants::icase };
     std::smatch matches;
@@ -243,7 +245,7 @@ bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int cente
         int height = std::stoi(matches[2]);
         int size = width * height;
         std::string cellStates = matches[3];
-        resetStats();
+        
         
         for (int index = 0; index < size; ++index) {
     
@@ -258,13 +260,16 @@ bool GOLTeamK::setFromPattern(std::string const& pattern, int centerX, int cente
             if (realX >= 0 && realX < mGrid.getWidth() && realY >= 0 && realY < mGrid.getHeight()) {
 
                 // Obtenir l'état de la cellule (vivant ou mort)
-                if (cellStates[index] == '1') {
+                if (cellStates[index] == '1' && mGrid.value(realX,realY) == State::dead) {
 
                     setState(realX, realY, State::alive);
+                    (*mStats.totalDeadAbs)--;
                 }
-                else
+                else if(cellStates[index] == '0' && mGrid.value(realX, realY) == State::alive) {
                     setState(realX, realY, State::dead);
-            }
+                    (*mStats.totalAliveAbs)--;
+                }
+            }   
         }
         relStats();
         mStats.iteration = mIteration = 0;
