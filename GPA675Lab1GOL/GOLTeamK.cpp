@@ -420,7 +420,7 @@ void GOLTeamK::processOneStep()
             //setState(column, row, *pastGrid);
             fillBorder(row,column,*pastGrid);
 
-            if (mGrid.value(column,row) == State::alive) {  //verifie la ouvelle valeur de la grille
+            if (mGrid.value(column,row) == State::alive) {  //verifie la nouvelle valeur de la grille
                 (*mNewStats.totalAliveAbs)++;
             }
             else {
@@ -720,9 +720,9 @@ void GOLTeamK::copyGrid()
     State* grid = mGrid.data();
 
     for (int i{}; i < size; ++i) {
-        int row = i / width;
         int column = i % width;
-        mPastGrid.setValue(row, column, *(grid + i));
+        int row = i / width;
+        mPastGrid.setValue(column,row, *(grid + i));
     }
 }
 
