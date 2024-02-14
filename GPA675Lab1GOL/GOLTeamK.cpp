@@ -1,10 +1,8 @@
 #include "GOLTeamK.h"
 
 GOLTeamK::GOLTeamK()
-
 {
     setInformation();
-    //setStats();
 }
 
 GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
@@ -19,7 +17,7 @@ GOLTeamK::GOLTeamK(size_t width, size_t height, State defaultState)
     , mBornRule{}
     , mSurviveRule{}
     , mRule{}
-    ,mNewStats{}
+    , mNewStats{}
 {
     setInformation();
 }
@@ -32,20 +30,26 @@ void GOLTeamK::setInformation()
 {
     mInfo.title = "Game of life Team K";
     mInfo.authors = { {"Curiel - Garfias","Jacob","jacob.curiel-garfias.1@ens.etsmtl.ca"}, {"David-Way","William","william.david-way.1@ens.etsmtl.ca"}};
-    mInfo.answers = { {" 1. Nous avons utilise un tableau a une dimension que nous gerons grace a un pointeur qui se deplace dans la memoire selon les colonne et les rangees"
-                      " determinees par l'uitilisateur. Le tableau est et le pointeur sont crees a la creation de d'un objet GridTeamK, le tableau est supprime et le pointeur mis a nullptr"
-                      " lors de l'appel du destructeur. Il en est de meme lors de la fonction resize, ou on detruit la grid actuelle et en cree une nouvelle selon les nouveles dimensions." },
-                     {"2. La fonction processOneStep commence par faire une copie des donnees de la grille actuelle dans une autre grille representant l'etat passe de celle-ci, puis parcours"
-                      " la grille au complet (sauf la bordure dans les cas ou celle-ci reste identique) en verifiant l'etat des cases qui entourent la case evaluee presentement dans la grille"
-                      " de l'etat passe, puis modifie la case evaluee dans la grille principale selon les regles de mort ou de survie. Les statistiques de la grille sont egalement mises a jour."},
-                     {"3.decrivez l’implementation algorithmique de la fonction GOL::updateImage"},
-                     {"4. Nous avons creer des variables membres de GOLTeamK sous la forme d'un tableau de 9 booleen representant la regle de naissance et la regle de survie. Lors de la lecture"
-                      " de la regle il suffisait a mettre les positions associees au nombre souhaitee par la regle a leur valeur booleennes. Puis, lors de l'execution, on utilises le nombre de"
-                      " cellules vivantes autour de la cellule evaluee comme index des tableaux pour determiner si la naissance ou la survive de cette derniere est vraie."},
-                     {"5. Pour les trois strategies qui n'evaluent pas les bords (immutableAsIs, foreverDead et foreverAlive), nous avons simplement fait le remplissage approprie des bords lors du"
-                      " remplissage de la grille, puis ignore les cellules de bordure lors de notre processOneStep. Lorsqu'on evalue que la gestion de bordure est mirror et que la cellule evaluee"
-                      " est situee sur la bordure, nous comptons seulement les cases de la grille necessaires en double. Lorsque la gestion de bordure est warping et que la cellule evaluee est sur"
-                      " la bordure, on modifie les pointeurs qui pointerait normalement a une position a l'exterieur de la grille pour qu'ils pointent a la position representant le cote oppose."}};
+    mInfo.answers = {{"1. Nous avons utilisé un tableau à une dimension que nous gérons grâce à un pointeur qui se déplace dans la mémoire selon les colonnes et les rangées"
+                      "Déterminées par l'utilisateur. Le tableau est et le pointeur sont créés a la création d'un objet GridTeamK, le tableau est supprimé et le pointeur mis a nullptr"
+                      "lors de l'appel du destructeur. Il en est de même lors de la fonction resize, ou on détruit la grille actuelle et en crée une nouvelle selon les nouvelles dimensions." },
+                     {"2. La fonction processOneStep commence par faire une copie des données de la grille actuelle dans une autre grille représentant l'état passe de celle-ci, puis parcours"
+                      "la grille au complet (sauf la bordure dans les cas où celle-ci reste identique) en vérifiant l'état des cases qui entourent la case évaluée présentement dans la grille"
+                      "de l'état passe, puis modifie la case évaluée dans la grille principale selon les règles de mort ou de survie. Les statistiques de la grille sont également mises à jour."},
+                     {"3.Dans une boucle while qui reste vraie tant que notre index est plus petit que la taille du tampon, nous vérifions pour chaque cellule son état."
+                      "Si la cellule est vivante, la couleur de mAliveColor est utilisée. Sinon, la couleur de mDeadColor est utilisée."
+                      "La couleur est sauvegardée dans un objet de type Color qui contient les composantes rouge, vertes et bleues de notre couleur."
+                      "Ensuite, nous mettons à jour la couleur du buffer sous un format ARGB à la position (buffer+x)."
+                      "Nous incrémentons nos variables, l'index x pour la position suivante du buffer et le pointeur myGrid pour la prochaine cellule de la grille."
+                      "Puisque Color est une struct contenant 3 bandes de couleurs de type uint8_t, nous devons mettre (0xff) avant nos bandes de couleur dans le buffer car elle représente l'opacité."
+                      "Remarque que Buffer est de type uint32_t, contenant 32 bit au total pour le format ARGB et notre struct Color est composé seulement de 24 bit."},
+                     {"4. Nous avons créer des variables membres de GOLTeamK sous la forme d'un tableau de 9 booléen représentant la règle de naissance et la règle de survie. Lors de la lecture"
+                      "de la règle il suffisait à mettre les positions associées au nombre souhaité par la règle à leur valeur booléenne. Puis, lors de l'exécution, on utilise le nombre de"
+                      "cellules vivantes autour de la cellule évaluée comme index des tableaux pour déterminer si la naissance ou la survive de cette dernière est vraie."},
+                     {"5. Pour les trois stratégies qui n'évaluent pas les bords (immutableAsIs, foreverDead et foreverAlive), nous avons simplement fait le remplissage approprie des bords lors du"
+                      "remplissage de la grille, puis ignore les cellules de bordure lors de notre processOneStep. Lorsqu'on évalue que la gestion de bordure est mirror et que la cellule évaluée."
+                      "est située sur la bordure, nous comptons seulement les cases de la grille nécessaires en double. Lorsque la gestion de bordure est warping et que la cellule évaluée est sur"
+                      "la bordure, on modifie les pointeurs qui pointeraient normalement à une position à l'extérieur de la grille pour qu'ils pointent à la position représentant le côté opposé."}};
     mInfo.optionnalComments = {};
 }
 void GOLTeamK::setStats(State state)
@@ -62,12 +66,14 @@ void GOLTeamK::setStats(State state)
 
 void GOLTeamK::relStats()
 {
+    //nous utilisons le static_cast pour convertir le chiffre entier size_t en un chiffre de type Float
     mStats.totalAliveRel = static_cast<float>(*mStats.totalAliveAbs) / (*mStats.totalCells);
     mStats.totalDeadRel = static_cast<float>(*mStats.totalDeadAbs) / (*mStats.totalCells);
 }
 
 void GOLTeamK::tendencyCal()
 {
+    //nouc calculons la tendence avec en utilisant l'éqution suivante: tendency = (NewTotalAlive - OldTotalAlive ) - (NewTotalDead - OldTotalDead)
     mStats.tendencyAbs = (static_cast<int>(*mNewStats.totalAliveAbs) - static_cast<int>(*mStats.totalAliveAbs)) - (static_cast<int>(*mNewStats.totalDeadAbs) - static_cast<int>(*mStats.totalDeadAbs));
     mStats.tendencyRel = static_cast<float>(*mStats.tendencyAbs) / (*mStats.totalCells);
 }
@@ -91,6 +97,7 @@ void GOLTeamK::resetStats()
 
 bool GOLTeamK::onBorder(size_t row, size_t column)
 {
+    //vérifie si les coordonnées se trouvent sur une bordure
     if (row == 0 || row == mGrid.getHeight() - 1 || column == 0 || column == mGrid.getWidth() - 1) {
 
         return true;
@@ -100,8 +107,7 @@ bool GOLTeamK::onBorder(size_t row, size_t column)
 
 bool GOLTeamK::ignoreBorder()
 {
-    //les Bordures non modifiables 
-
+    //Vérifie si la bordure est modifiable 
     if (mBorderManagement == BorderManagement::immutableAsIs
         || mBorderManagement == BorderManagement::foreverDead
         || mBorderManagement == BorderManagement::foreverAlive) {
@@ -114,12 +120,12 @@ bool GOLTeamK::ignoreBorder()
 void GOLTeamK::fillBorder(size_t row, size_t column, State state)
 {
     if (mBorderManagement == BorderManagement::foreverDead) {           //si foreverDead, alors cellule morte
-        setState(column, row, State::dead);
+        setState(column, row, State::dead);                             
     }
     else if (mBorderManagement == BorderManagement::foreverAlive) {     //si foreverAlive, alors cellule vivante
         setState(column, row, State::alive);
     }
-    else if (mBorderManagement == BorderManagement::immutableAsIs) {
+    else if (mBorderManagement == BorderManagement::immutableAsIs) {    //sinon la cellule garde son état tel quel
         setState(column, row, state);
     }
 }
@@ -141,7 +147,7 @@ size_t GOLTeamK::size() const
 
 GOL::State GOLTeamK::state(int x, int y) const
 {
-    return mGrid.value(x, y);       //ne valide pas ses entrees
+    return mGrid.value(x, y);       
 }
 
 std::string GOLTeamK::rule() const
@@ -156,6 +162,7 @@ GOL::BorderManagement GOLTeamK::borderManagement() const
 
 GOL::Color GOLTeamK::color(State state) const
 {
+    //retourne la couleur de la cellule
     if (state == State::alive) {
         return mAliveColor;
     }
@@ -176,17 +183,17 @@ GOL::ImplementationInformation GOLTeamK::information() const
 
 void GOLTeamK::resize(size_t width, size_t height, State defaultState)
 {
-    resetStats();
+    resetStats();                                                   //nous remettons nos statistiques à zéro
     if (width == 0 || height == 0) {
         width = 0;
         height = 0;
     }
 
-    mGrid.resize(width, height, defaultState);
-    mPastGrid.resize(width, height, defaultState);  
+    mGrid.resize(width, height, defaultState);                      //on redimensionne notre grille
+    mPastGrid.resize(width, height, defaultState);                  //ainsi que la grille de copie pour le OneStep
 
-    mStats.iteration = mIteration = 0;
-    mStats.height = mGrid.getHeight();
+    mStats.iteration = mIteration = 0;                              //L'itération courante est remise à 0.
+    mStats.height = mGrid.getHeight();                              //Les statistiques sont mises à jours avec les nouvelles dimensions
     mStats.width = mGrid.getWidth();
     mStats.totalCells = mGrid.getSize();
 
@@ -196,30 +203,32 @@ void GOLTeamK::resize(size_t width, size_t height, State defaultState)
         size_t column = i % mGrid.getWidth();
         size_t row = i / mGrid.getWidth();
 
-        if (onBorder(row, column) && ignoreBorder()) {
+        if (onBorder(row, column) && ignoreBorder()) {              //Si nous avons une bordure qui doit avoir un état précis
 
-            fillBorder(row, column, mGrid.value(column, row));
+            fillBorder(row, column, mGrid.value(column, row));      //alors la modification est appliquée
         }
         else {
             setStats(defaultState);
         }
     }
-    relStats();
+    relStats();                                                     //Nous mettons à jour nos statistiques après avoir compté le nombre de cellules mortes et vivantes
 }
 
 bool GOLTeamK::setRule(std::string const& rule)
 {
-    const std::regex pattern{ "^B([0-8]{0,9})/S([0-8]{0,9})$", std::regex_constants::icase };
+    const std::regex pattern{ "^B([0-8]{0,9})/S([0-8]{0,9})$", std::regex_constants::icase };   //format de la règle qui doit être respecté
     std::smatch matches;
 
-    if (std::regex_match(rule, matches, pattern)) {
-        mStats.rule = mRule = rule;
+    if (std::regex_match(rule, matches, pattern)) {                 //Vérification que la régle de l'utilisateur est valide
+        mStats.rule = mRule = rule;                                 //sauvegarde la règle dans stats et mRule
 
+        //initialisation des tableaux 
         for (int i{}; i < 9; ++i) {
             mBornRule[i] = false;
             mSurviveRule[i] = false;
         }
 
+        // Extrait les chiffres de la partie born de la règle et les marque comme true dans mBornRule.
         std::ssub_match bornNumbers = matches[1];
         std::string bornString = bornNumbers.str();
         for (char digit : bornString) {
@@ -227,6 +236,7 @@ bool GOLTeamK::setRule(std::string const& rule)
             mBornRule[num] = true;
         }
 
+        // Extrait les chiffres de la partie Survive de la règle et les marque comme true dans mSurviveRule.
         std::ssub_match surviveNumbers = matches[2];
         std::string surviveString = surviveNumbers.str();
         for (char digit : surviveString) {
@@ -301,15 +311,15 @@ void GOLTeamK::setBorderManagement(BorderManagement borderManagement)
 {
     mStats.borderManagement = mBorderManagement = borderManagement;
 
-    if (ignoreBorder()) {   //verifie si le remplissage de bordure est necessaire
-        resetStats();
+    if (ignoreBorder()) {                                               //verifie si le remplissage de bordure est nécessaire
+        resetStats();                                                   //mise à zéro des statistiques
 
         for (size_t i{}; i < mGrid.getSize(); ++i) {
 
             size_t column = i % mGrid.getWidth();
             size_t row = i / mGrid.getWidth();
 
-            if (onBorder(row, column)) {
+            if (onBorder(row, column)) {                                //vérification de bordure
 
                 fillBorder(row, column, mGrid.value(column, row));
             }
@@ -332,7 +342,7 @@ void GOLTeamK::fill(State state)
 {
     resetStats();                                           //les stats sont remis à zéro
 
-    for (size_t i{}; i < mGrid.getSize(); ++i) {
+    for (size_t i{}; i < mGrid.getSize(); ++i) {            //vérifie chaque cellules de la grille
 
         size_t column = i % mGrid.getWidth();
         size_t row = i / mGrid.getWidth();
@@ -352,15 +362,15 @@ void GOLTeamK::fill(State state)
 void GOLTeamK::fillAlternately(State firstCell)
 {
     resetStats();
-    State oppositeState = getOppositeState(firstCell);
+    State oppositeState = getOppositeState(firstCell);  //sauvegarde l'état opposé de la cellule actuelle
 
     for (size_t i{}; i < mGrid.getSize(); ++i) {
 
         size_t column = i % mGrid.getWidth();
         size_t row = i / mGrid.getWidth();
-        State cellstate = ((row + column) % 2 == 0) ? firstCell : oppositeState;    //l'opperateur ? resume cette ligne a --> Si VRAI alors cellstate vaut firstcell, sinon elle vaut oppositeState
+        State cellstate = ((row + column) % 2 == 0) ? firstCell : oppositeState;    //l'opperateur ? resume cette ligne à --> Si VRAI alors cellstate vaut firstcell, sinon elle vaut oppositeState
 
-        if (onBorder(row, column) && ignoreBorder()) {
+        if (onBorder(row, column) && ignoreBorder()) {                              //vérification de bordure    
 
             fillBorder(row, column, cellstate);
         }
@@ -384,19 +394,21 @@ void GOLTeamK::randomize(double percentAlive)
         size_t column = i % mGrid.getWidth();
         size_t row = i / mGrid.getWidth();
 
-        if (onBorder(row, column) && ignoreBorder()) {
+        if (onBorder(row, column) && ignoreBorder()) {      //vérification de bordure
+
             fillBorder(row, column, cellstate);
         }
         else {
             setState(column, row, cellstate);
         }
     }
-    relStats();
-    mStats.iteration = mIteration = 0;
+    relStats();                                             //mise à jour des statistiques
+    mStats.iteration = mIteration = 0;                      //mise à zéro des itération
 }
 
 void GOLTeamK::setSolidColor(State state, Color const& color)
 {
+    //mettre les nouvelles couleurs pour les couleurs vivantes et mortes
     if (state == State::alive) {
         mAliveColor = color;
     }
@@ -407,7 +419,6 @@ void GOLTeamK::setSolidColor(State state, Color const& color)
 
 void GOLTeamK::processOneStep()
 {
-
     const size_t width = mGrid.getWidth();
     const size_t height = mGrid.getHeight();
     const size_t size = mGrid.getSize();
@@ -424,7 +435,7 @@ void GOLTeamK::processOneStep()
         if (ignoreBorder && onBorder) {
             fillBorder(row,column,*pastGrid);
 
-            if (mGrid.value(column,row) == State::alive) {  //verifie la nouvelle valeur de la grille
+            if (mGrid.value(column,row) == State::alive) {                  //verifie la nouvelle valeur de la grille
                 (*mNewStats.totalAliveAbs)++;
             }
             else {
@@ -433,14 +444,15 @@ void GOLTeamK::processOneStep()
         }
         else {
 
-            int alive = getAliveAround(column, row, onBorder, pastGrid); //retourne le nombre de cellules vivantes sur la cellule avant modification de la grille
+            int alive = getAliveAround(column, row, onBorder, pastGrid);    //retourne le nombre de cellules vivantes sur la cellule avant modification de la grille
 
-            if (mGrid.value(column, row) == State::alive) { //verifie la valeur presente, si la cellule est vivante
+            if (mGrid.value(column, row) == State::alive) {                 //verifie si la cellule est vivante
 
-                (*mStats.totalAliveAbs)++;                
+                (*mStats.totalAliveAbs)++;                                  //si oui on incrémente notre statistique de cellules vivantes
 
-                if (!mSurviveRule[alive]) { //si le nombre vivant autour de la cellule ne respecte pas la regle de survie
-                    //setState(column, row, State::dead);   //on n'utilise pas la fonction setState car elle modifie les statistiques de l'ancienne grille
+                //traitement des cellules en fonction des règles de survie
+                if (!mSurviveRule[alive]) {                                 
+                //on n'utilise pas la fonction setState car elle modifie les statistiques de l'ancienne grille
                     mGrid.setValue(column, row, State::dead); 
                     (*mNewStats.totalDeadAbs)++;
                 }
@@ -460,13 +472,10 @@ void GOLTeamK::processOneStep()
                 }
             }
         }
-        ++pastGrid;
+        ++pastGrid;                                                         //passe à la prochaine cellule de la grille avant modification
     }
     mStats.iteration = ++mIteration;
-    tendencyCal();  //a faire avant de swap les stats
-
-    //petit bug, j'ai remarqué qu'on retourné les stats de l'ancienne grille donc apres un onestep les stats ne faisait pas de sense
-    //pour l'instant les deux prochaines lignes regles le problemes donc on peut laisser ca de meme pour l'instant
+    tendencyCal();                                                          //à faire avant de modifier les stats
     mStats.totalAliveAbs = mNewStats.totalAliveAbs;
     mStats.totalDeadAbs = mNewStats.totalDeadAbs;
 
@@ -475,26 +484,29 @@ void GOLTeamK::processOneStep()
 
 void GOLTeamK::updateImage(uint32_t* buffer, size_t buffer_size) const
 {
-    size_t x{}; //index pour parcourir le buffer
-    DataType myGrid{ mGrid.data() }; //myGrid est de type Celltype*
+    size_t x{};                                                                                             //index pour parcourir le buffer
+    DataType myGrid{ mGrid.data() };                                                                        //myGrid est de type Celltype*
   
-    while (x < buffer_size) {
+    while (x < buffer_size) {                                                                               // Parcourt le tampon de l'image
 
-        Color cellColor = (*myGrid == State::alive) ? mAliveColor : mDeadColor;
+        Color cellColor = (*myGrid == State::alive) ? mAliveColor : mDeadColor;                             // Si la cellule est vivante, utilise mAliveColor; sinon, utilise mDeadColor.
 
+        // Met à jour la couleur de la cellule dans le buffer.
+        // Format ARGB : 0xff pour l'opacité (Alpha), puis les composantes Rouge, Verte, Bleue.
         *(buffer + x) = (0xff << 24) | (cellColor.red << 16) | (cellColor.green << 8) | cellColor.blue;
 
+        // Incrémente les pointeurs pour passer à la cellule suivante
         ++x;
         ++myGrid;
     }
 }
 
-
 int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid)
 {
-    int aliveCells = 0;
-    int width = mGrid.getWidth();
-    int height = mGrid.getHeight();
+
+    int aliveCells = 0;                 // Compteur pour les cellules vivantes
+    int width = mGrid.getWidth();       // Largeur de la grille
+    int height = mGrid.getHeight();     // Hauteur de la grille
 
     //Des pointeurs de State qui pointent autour de la cellule
     State* topLeft = pastGrid - width - 1;
@@ -506,7 +518,8 @@ int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid
     State* bottom = pastGrid + width;
     State* bottomRight = pastGrid + width + 1;
 
-
+    //Vérifie si la grille est gérée avec une bordure mirror ou warping
+    // alors le calcul des cellules vivantes est ajusté pour refléter cela.
     if (mBorderManagement == BorderManagement::mirror && onBorder) {
         if (row == 0 && column == 0) {
             if (*right == State::alive) {
@@ -669,6 +682,7 @@ int GOLTeamK::getAliveAround(int column, int row, bool onBorder, State* pastGrid
                 bottomRight = pastGrid - width * (height - 1) + 1;
             }
         }
+        // on compte simplement le nombre de cellules vivantes parmi les 8 cellules voisines.
         if (*topLeft == State::alive) {
             ++aliveCells;
         }
@@ -703,12 +717,12 @@ void GOLTeamK::copyGrid()
     int size = mGrid.getSize();
     int height = mGrid.getHeight();
     int width = mGrid.getWidth();
-    State* grid = mGrid.data();
+    State* grid = mGrid.data();                 //pointeur vers les données de la grille
 
     for (int i{}; i < size; ++i) {
         int column = i % width;
         int row = i / width;
-        mPastGrid.setValue(column,row, *(grid + i));
+        mPastGrid.setValue(column,row, *(grid + i));    // Copie l'état de la cellule vers mPastGrid à la position correspondante
     }
 }
 
@@ -716,10 +730,10 @@ GOL::State GOLTeamK::getOppositeState(State state)
 {
     if (state == State::alive) {
 
-        return State::dead;
+        return State::dead;         // Si la cellule est vivante, retourne l'état mort
     }
     else {
 
-        return State::alive;
+        return State::alive;        // Sinon, si la cellule est morte, retourne l'état vivant
     }
 }

@@ -26,44 +26,43 @@ public:
 	GOLTeamK& operator=(GOLTeamK&&) = delete;
 
 	// Inherited via GOL
-	size_t width() const override;																	//done
-	size_t height() const override;																	//done
-	size_t size() const override;																	//done
-	State state(int x, int y) const override;														//done
-	std::string rule() const override;																//done
-	BorderManagement borderManagement() const override;												//done
-	Color color(State state) const override;														//done
-	Statistics statistics() const override;															//done
-	ImplementationInformation information() const override;											//done
+	size_t width() const override;																	//
+	size_t height() const override;																	//
+	size_t size() const override;																	//
+	State state(int x, int y) const override;														//
+	std::string rule() const override;																//
+	BorderManagement borderManagement() const override;												//
+	Color color(State state) const override;														//
+	Statistics statistics() const override;															//
+	ImplementationInformation information() const override;											//
 
-	void resize(size_t width, size_t height, State defaultState) override;							//done
-	bool setRule(std::string const& rule) override;													//done
-	void setBorderManagement(BorderManagement borderManagement) override;							//done
-	void setState(int x, int y, State state) override;												//done
-	void fill(State state) override;																//done
-	void fillAlternately(State firstCell) override;													//done
-	void randomize(double percentAlive) override;													//done
-	bool setFromPattern(std::string const& pattern, int centerX, int centerY) override;				//done
-	bool setFromPattern(std::string const& pattern) override;										//done
-	void setSolidColor(State state, Color const& color) override;									//done		fonction pour definir la couleur
-	void processOneStep() override;																	//done 
-	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//done
+	void resize(size_t width, size_t height, State defaultState) override;							//
+	bool setRule(std::string const& rule) override;													//
+	void setBorderManagement(BorderManagement borderManagement) override;							//
+	void setState(int x, int y, State state) override;												//
+	void fill(State state) override;																//fonction de remplissage
+	void fillAlternately(State firstCell) override;													//
+	void randomize(double percentAlive) override;													//
+	bool setFromPattern(std::string const& pattern, int centerX, int centerY) override;				//
+	bool setFromPattern(std::string const& pattern) override;										//
+	void setSolidColor(State state, Color const& color) override;									//fonction pour definir la couleur
+	void processOneStep() override;																	//
+	void updateImage(uint32_t* buffer, size_t buffer_size) const override;							//
 	
 	int getAliveAround(int column, int row, bool onBorder, State* pastGrid);						//fonction qui compte le nombre de cellules vivantes autour d'une position dans la grille
-	void copyGrid();																				//fonction qui copy l'etat actuel de la grille dans mPastGrid
-	State getOppositeState(State state);															//fonction qui retourne un etat oppose
+	void copyGrid();																				//fonction qui copy l'état actuel de la grille dans mPastGrid
+	State getOppositeState(State state);															//fonction qui retourne l'état opposé d'une cellule
 	void setInformation();																			//fonction pour les informations du projet
 
 
-	bool onBorder(size_t row, size_t column);														//fonction qui verifie si nous sommes sur une bordure
-	bool ignoreBorder();																			//fonction qui verifie les bordures non modifiables
+	bool onBorder(size_t row, size_t column);														//fonction qui vérifie si nous sommes sur une bordure
+	bool ignoreBorder();																			//fonction qui vérifie les bordures non modifiables
 	void fillBorder(size_t row, size_t column, State state);										//fonction qui remplie cases de bordure respectant le BorderManagement
 
-
-	void tendencyCal();
-	void resetStats();
-	void setStats(State state);
-	void relStats();
+	void tendencyCal();																				//fonction qui met à jour la tendence
+	void resetStats();																				//fonction qui met les statistiques à zéro
+	void setStats(State state);																		//fonction qui incrémente les statistiques absolues
+	void relStats();																				//fonction qui met à jour les statistiques relatives
 
 
 private:

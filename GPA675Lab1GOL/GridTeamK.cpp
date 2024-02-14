@@ -9,13 +9,17 @@ GridTeamK::GridTeamK()
 }
 
 GridTeamK::GridTeamK(size_t width, size_t height, CellType initValue)
-	:mWidth{ width }						//column
-	,mHeight{ height }						//row
-	,mSize{ width * height }
-	,mGrid{ new CellType  [mSize]}		//initialisation du pointeur de ligne
+	:mWidth{ width }												//column
+	,mHeight{ height }												//row
+	,mSize{ width * height }										//taille du tableau unidimensionnel
+	,mGrid{ new CellType  [mSize]}									//initialisation du pointeur de ligne
 {
-	for (DataType cur{mGrid}; cur < mGrid + mSize; ++cur) {
-		*cur = initValue;
+	//Le pointeur est initialisé avec l'adresse de mGrid
+	//et on incrémente le pointeur tant qu'il est plus petit
+	//que l'adresse du début+le nombre de cellule nécessaire.
+
+	for (DataType cur{mGrid}; cur < mGrid + mSize; ++cur) {			
+		*cur = initValue;											//l'état est sauvegarder a l'endroit où pointe le pointeur
 	}
 }
 
@@ -31,8 +35,10 @@ GridTeamK::~GridTeamK()
 
 void GridTeamK::gridDelete()
 {
-	delete[] mGrid;
-	mGrid = nullptr;
+	//Puisque nous travaillons avec un tableau unidimensionnel
+	//nous pouvons tout  simplement suprimer notre pointeur mGrid pour libérer la mémoire
+	delete[] mGrid;							
+	mGrid = nullptr;					//nous devons mettre le pointeur a nullptr car il n'est pas utilisé
 }
 
 size_t GridTeamK::getWidth() const
@@ -52,12 +58,12 @@ size_t GridTeamK::getSize() const
 
 void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 {
-	gridDelete();
+	gridDelete();													//appel la fonction pour libérer la mémoire
 
 	mWidth = width;
 	mHeight = height;
 	mSize = width * height;
-	mGrid = new CellType [mSize];			//initialise mGrid avec la nouvelle taille
+	mGrid = new CellType [mSize];									//initialise mGrid avec la nouvelle taille
 
 	for (DataType cur{ mGrid }; cur < mGrid + mSize; ++cur) {
 
@@ -67,7 +73,9 @@ void GridTeamK::resize(size_t width, size_t height, CellType initValue)
 
 CellType GridTeamK::value(int column, int row) const
 {
-	return mGrid[row * mWidth + (column)];
+	//(row * mWidth) nous permet de trouver sur quelle rangée nous sommes
+	//ensuite nous avons juste à additionner la colonne de notre position
+	return mGrid[row * mWidth + (column)];								
 }
 
 void GridTeamK::setValue(int column, int row, CellType value)
@@ -77,6 +85,7 @@ void GridTeamK::setValue(int column, int row, CellType value)
 
 optional<CellType> GridTeamK::at(int column, int row) const
 {
+	//Vérification que la rangée et la colonne sont valide
 	if (row >= 0 && row < mHeight && column >= 0 && column < mWidth) {
 		return mGrid[row * mWidth + (column)];
 	}
@@ -85,6 +94,7 @@ optional<CellType> GridTeamK::at(int column, int row) const
 
 void GridTeamK::setAt(int column, int row, CellType value)
 {
+	//Vérification que la rangée et la colonne sont valide
 	if (row >= 0 && row < mHeight && column >= 0 && column < mWidth) {
 		mGrid[row * mWidth + (column)] = value;
 	}
