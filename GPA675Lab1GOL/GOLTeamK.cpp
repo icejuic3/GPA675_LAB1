@@ -51,6 +51,10 @@ void GOLTeamK::setInformation()
                       "est située sur la bordure, nous comptons seulement les cases de la grille nécessaires en double. Lorsque la gestion de bordure est warping et que la cellule évaluée est sur"
                       "la bordure, on modifie les pointeurs qui pointeraient normalement à une position à l'extérieur de la grille pour qu'ils pointent à la position représentant le côté opposé."}};
     mInfo.optionnalComments = {};
+
+
+
+
 }
 void GOLTeamK::setStats(State state)
 {
