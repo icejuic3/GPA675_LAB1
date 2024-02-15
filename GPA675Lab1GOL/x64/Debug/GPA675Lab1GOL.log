@@ -1,1 +1,555 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.Cpp.WindowsSDK.targets(46,5): error MSB8036: The Windows SDK version 10.0.22621.0 was not found. Install the required version of Windows SDK or change the SDK version in the project property pages or by right-clicking the solution and selecting "Retarget solution".
+﻿  GOLTeamK.cpp
+  GridTeamK.cpp
+  main.cpp
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.cpp(1,1): warning C4828: The file contains a character starting at offset 0x305 that is illegal in the current source character set (codepage 65001).
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.cpp(1,1): warning C4828: The file contains a character starting at offset 0x36f that is illegal in the current source character set (codepage 65001).
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x14 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xdf that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x92 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x20e that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x5a3 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xed that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x5a8 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x19b that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x64a that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x1ad that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x661 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x1b1 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x6aa that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x1be that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x6d4 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x79a that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x7b1 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x7fa that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x824 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x8f0 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x907 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x929 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x957 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x9d0 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x9e7 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xa09 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xa2b that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xb17 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,18): error C2653: 'GOLTeamK': is not a class or namespace name
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,28): error C2061: syntax error: identifier 'State'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,18): error C2065: 'GOLTeamK': undeclared identifier
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,18): error C2065: 'CellType': undeclared identifier
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,18): error C2187: syntax error: 'CellType' was unexpected here
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,28): error C2059: syntax error: ';'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,41): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,70): error C2143: syntax error: missing ')' before '{'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,72): error C2059: syntax error: ')'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,43): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,72): error C2143: syntax error: missing ')' before '{'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,74): error C2059: syntax error: ')'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,11): error C3646: 'value': unknown override specifier
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,16): error C2059: syntax error: '('
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,43): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(31,37): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,11): error C2065: 'CellType': undeclared identifier
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,2): error C7568: argument list missing after assumed function template 'optional'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(34,34): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,11): error C2143: syntax error: missing ';' before 'const'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,10): error C2143: syntax error: missing ';' before '&'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,18): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(44,11): error C3646: 'mGrid': unknown override specifier
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(44,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GridTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(7,14): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(7,3): error C2614: 'GridTeamK': illegal member initialization: 'mGrid' is not a base or member
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(11,51): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(11,12): error C2084: function 'GridTeamK::GridTeamK(size_t,size_t)' already has a body
+  C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,2):
+  see previous definition of '{ctor}'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(15,14): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(15,3): error C2614: 'GridTeamK': illegal member initialization: 'mGrid' is not a base or member
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(19,3): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(19,18): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(23,4): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(23,18): error C2065: 'initValue': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(32,12): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(34,11): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(34,2): error C2541: 'delete': cannot delete objects that are not pointers
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(35,2): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(53,53): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(53,17): error C2084: function 'void GridTeamK::resize(size_t,size_t)' already has a body
+  C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,7):
+  see previous definition of 'resize'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(58,2): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(58,14): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(62,3): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(62,18): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(66,4): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(66,18): error C2065: 'initValue': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(71,21): error C2039: 'value': is not a member of 'GridTeamK'
+  C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(9,7):
+  see declaration of 'GridTeamK'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(71,26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(71,21): error C2146: syntax error: missing ';' before identifier 'value'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(72,1): error C2143: syntax error: missing ';' before '{'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(72,1): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(76,47): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(78,2): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(78,23): error C2065: 'value': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(81,1): error C7568: argument list missing after assumed function template 'optional'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(84,10): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(86,9): error C2065: 'nullopt': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(89,44): error C2061: syntax error: identifier 'CellType'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(92,3): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(92,24): error C2065: 'value': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(96,10): error C2143: syntax error: missing ';' before 'const'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(96,10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(96,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(98,9): error C2065: 'mGrid': undeclared identifier
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(101,9): error C2143: syntax error: missing ';' before '&'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(101,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(101,1): error C2086: 'int DataType': redefinition
+  C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(96,1):
+  see declaration of 'DataType'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(102,1): error C2761: 'const int &GridTeamK::data(void) const': redeclaration of member is not allowed
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(102,1): error C2059: syntax error: '{'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(102,1): error C2143: syntax error: missing ';' before '{'
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.cpp(102,1): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x14 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xdf that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x20e that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x5a3 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x5a8 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x64a that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x661 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x6aa that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x6d4 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x79a that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x7b1 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x7fa that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x824 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x8f0 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x907 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x929 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x957 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x9d0 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x9e7 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xa09 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xa2b that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xb17 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,18): error C2653: 'GOLTeamK': is not a class or namespace name
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,28): error C2061: syntax error: identifier 'State'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,18): error C2065: 'GOLTeamK': undeclared identifier
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,18): error C2065: 'CellType': undeclared identifier
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,18): error C2187: syntax error: 'CellType' was unexpected here
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,28): error C2059: syntax error: ';'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,41): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,70): error C2143: syntax error: missing ')' before '{'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,72): error C2059: syntax error: ')'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,43): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,72): error C2143: syntax error: missing ')' before '{'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,74): error C2059: syntax error: ')'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,11): error C3646: 'value': unknown override specifier
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,16): error C2059: syntax error: '('
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,43): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(31,37): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,11): error C2065: 'CellType': undeclared identifier
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,2): error C2923: 'std::optional': 'CellType' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'GOLTeamK.cpp')
+  C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,11):
+  see declaration of 'CellType'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,21): error C2955: 'std::optional': use of class template requires template argument list
+  (compiling source file 'GOLTeamK.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\optional(213,1):
+  see declaration of 'std::optional'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(34,34): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,11): error C2143: syntax error: missing ';' before 'const'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,10): error C2143: syntax error: missing ';' before '&'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,18): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(44,11): error C3646: 'mGrid': unknown override specifier
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(44,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'GOLTeamK.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x92 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xed that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x19b that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x1ad that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x1b1 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GOLTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x1be that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x14 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xdf that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x20e that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x5a3 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x5a8 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x64a that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x661 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x6aa that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x6d4 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x79a that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x7b1 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x7fa that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x824 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x8f0 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x907 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x929 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x957 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x9d0 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0x9e7 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xa09 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xa2b that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(1,1): warning C4828: The file contains a character starting at offset 0xb17 that is illegal in the current source character set (codepage 65001).
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,18): error C2653: 'GOLTeamK': is not a class or namespace name
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,28): error C2061: syntax error: identifier 'State'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(4,18): error C2065: 'GOLTeamK': undeclared identifier
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,18): error C2065: 'CellType': undeclared identifier
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,18): error C2187: syntax error: 'CellType' was unexpected here
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(5,28): error C2059: syntax error: ';'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,41): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,70): error C2143: syntax error: missing ')' before '{'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(15,72): error C2059: syntax error: ')'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,43): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,72): error C2143: syntax error: missing ')' before '{'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(27,74): error C2059: syntax error: ')'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,11): error C3646: 'value': unknown override specifier
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,16): error C2059: syntax error: '('
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(30,43): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(31,37): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,11): error C2065: 'CellType': undeclared identifier
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,2): error C2923: 'std::optional': 'CellType' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'main.cpp')
+  C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,11):
+  see declaration of 'CellType'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(33,21): error C2955: 'std::optional': use of class template requires template argument list
+  (compiling source file 'main.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\optional(213,1):
+  see declaration of 'std::optional'
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(34,34): error C2061: syntax error: identifier 'CellType'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,11): error C2143: syntax error: missing ';' before 'const'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(37,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,10): error C2143: syntax error: missing ';' before '&'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,10): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(38,18): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(44,11): error C3646: 'mGrid': unknown override specifier
+  (compiling source file 'main.cpp')
+  
+C:\Users\wway\source\repos\GPA675_LAB1\GPA675Lab1GOL\GridTeamK.h(44,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'main.cpp')
+  

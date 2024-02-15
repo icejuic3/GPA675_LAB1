@@ -31,9 +31,21 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GOLTeamK.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GridTeamK.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GOLAppLib\header\GOL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GOLTeamK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GridTeamK.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
